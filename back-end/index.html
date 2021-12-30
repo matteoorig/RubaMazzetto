@@ -1,0 +1,32 @@
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Pagina1</h1>
+    <input type="button" value="cip" onclick="vai()">
+    <script>
+        let ws = new WebSocket("ws://localhost:8888");
+        
+
+        window.onload = function(){
+            const payLoad = {
+            "method": "Pagina1",
+            }
+            ws.send(JSON.stringify(payLoad));
+        }
+        
+
+        ws.onmessage = message => {
+            const response = JSON.parse(message.data);
+            console.log(response.method);
+        }
+    </script>
+</body>
+
+</html>

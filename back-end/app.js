@@ -53,7 +53,44 @@ class Listener {
   }
 }
 
+var connessioneInCorso = null;
+//apro l'applicazione su due pagine
+console.log("[APP] pronto");
+const app = express();
+const pagina = require("http").Server(app);
+const path = require("path");
+const http = require("http");
 
+app.get('/home', (req, res) =>{
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+app.get('/second', (req, res) =>{
+  res.sendFile(path.join(__dirname, "secondIndex.html"));
+});
+pagina.listen(8889);
+
+//ascolto la comunicazione tra pagina html e server
+const webSocketServer = require("websocket").server;
+const httpServer = http.createServer();
+httpServer.listen(8888);
+const wsServer = new webSocketServer({
+  httpServer: httpServer,
+});
+
+wsServer.on("request", (request) => {
+  const connection = request.accept(null, request.origin);
+  connessioneInCorso = connection;
+  const payLoad = {
+    "method": "Server",
+  };
+  connection.send(JSON.stringify(payLoad));
+  connection.on("message", (message)=>{
+    //quando arriva un dato dal html viene elaborato qui 
+    const result = JSON.parse(message.utf8Data);
+    console.log(result.method);
+  });
+  
+});
 
 //io ascolto sempre
 
@@ -68,5 +105,3 @@ class Listener {
 
 
 
-console.log("[APP] pronto");
-const app = express();
