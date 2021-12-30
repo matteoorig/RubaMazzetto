@@ -14,5 +14,11 @@ function btnGioca(){
     else{
         console.log(nickname);
         console.log(indIp);
+        document.addEventListener("click", cambiaPag);
     }
+
+    function cambiaPag(){
+        document.location.href = "gioco.html";
+    }
+
 }

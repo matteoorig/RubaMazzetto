@@ -1,0 +1,94 @@
+*{
+    padding: 0;
+    margin: 0;
+    background-color: #138741;
+    overflow-y:hidden;
+}
+
+.container{
+    display: flex;
+    width: 100%;
+    height: 27%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.backCards{
+    margin-left: 2%;
+}
+.backCards2{
+    margin-right: 2%;
+}
+.playTable{
+    display: flex;
+    height: 46%;
+    width: 100%;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+.cardSpot{
+    margin: 0 50px;
+    width: 150px;
+    height: 200px;
+    border: 2px dashed #ffffff;
+    box-sizing: border-box;
+    border-radius: 19px;
+}
+.img{
+    margin-right: 2%;
+    border-style: solid;
+    border-width: 10px;
+    border-color: white;
+    width: 91px;
+    height: 91px;
+    background: #6CA683;
+    border-radius: 90%;
+    position: relative;
+}
+.img2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 2%;
+    border-style: solid;
+    border-width: 10px;
+    border-color: white;
+    width: 91px;
+    height: 91px;
+    background: #6CA683;
+    border-radius: 90%;
+    position: relative;
+}
+.retNames1{
+    position: absolute;
+    margin-left: 85%;
+    width: 187px;
+    height: 69px;
+    margin-top: 4%;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cutive', serif;
+    font-size: 160%;
+}
+.retNames2{
+    position: absolute;
+    width: 187px;
+    height: 69px;
+    margin-top: 4%;
+    margin-left: 5%;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cutive', serif;
+    font-size: 160%;
+}
+
+
