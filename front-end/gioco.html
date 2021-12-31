@@ -1,5 +1,4 @@
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cutive&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styleGioco.css">
+    <script src="functionGioco.js"></script>
 </head>
 
 <body>
@@ -58,7 +58,7 @@
             </svg>
         </div>
         <div class="enemyCards"></div>
-        <div class="img"></div>
+        <div class="img"><img src="user.jpg"></div>
         <div class="retNames1">MATTEO</div>
     </div>
     <div class="playTable">
@@ -75,8 +75,89 @@
         
     </div>
     <div class="container">
-        <div class="img2"></div>
+        <div class="img2" id="target"><img src="user.jpg"><!--<input type="file" accept=".png,.jpg" id="select_image" onchange="impostaImg()"/>--></div>
         <div class="retNames2">GIGI</div>
+
+
+
+        <div class="HAND">
+            <div class="handCards"><svg width="159" height="216" viewBox="0 0 159 216" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#filter0_d_0_1)">
+                <rect width="155" height="212" rx="19" fill="white"/>
+                <rect x="0.5" y="0.5" width="154" height="211" rx="18.5" stroke="black"/>
+                </g>
+                <path d="M120.353 166.1C114.805 161.873 109.896 163.898 108.134 165.439C105.823 166.1 98.8884 176.336 109.125 185.913C117.202 193.469 121.894 198.791 122.994 200.773V155.202H116.06C120.551 159.958 120.793 164.449 120.353 166.1Z" fill="black"/>
+                <path d="M125.483 166.1C131.03 161.873 135.94 163.898 137.701 165.439C140.012 166.1 146.947 176.336 136.71 185.913C128.633 193.469 123.942 198.791 122.841 200.773V155.202H129.776C125.285 159.958 125.043 164.449 125.483 166.1Z" fill="black"/>
+                <path d="M35.6636 46.5608C41.2112 50.7876 46.1205 48.7623 47.8816 47.2213C50.1932 46.5608 57.1277 36.3241 46.891 26.7478C38.8137 19.1916 34.1225 13.8692 33.0218 11.8879V57.458H39.9564C35.4654 52.7029 35.2233 48.2119 35.6636 46.5608Z" fill="black"/>
+                <path d="M30.5333 46.5608C24.9856 50.7876 20.0764 48.7623 18.3152 47.2213C16.0037 46.5608 9.06912 36.3241 19.3059 26.7478C27.3832 19.1916 32.0743 13.8692 33.175 11.8879V57.458H26.2405C30.7314 52.7029 30.9736 48.2119 30.5333 46.5608Z" fill="black"/>
+                <defs>
+                <filter id="filter0_d_0_1" x="0" y="0" width="159" height="216" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dx="2" dy="2"/>
+                <feGaussianBlur stdDeviation="1"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+                </filter>
+                </defs>
+                </svg>
+                </div>
+            <div class="handCards"><svg width="159" height="216" viewBox="0 0 159 216" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#filter0_d_0_1)">
+                <rect width="155" height="211.635" rx="19" fill="white"/>
+                <rect x="0.5" y="0.5" width="154" height="210.635" rx="18.5" stroke="black"/>
+                </g>
+                <path d="M96.4788 114.883C89.2666 121.374 80.8524 130.51 77.5469 134.266C76.9459 125.101 76.1044 104.245 77.5469 94.1483C79.3499 81.527 92.8727 76.5686 100.986 84.6823C109.1 92.796 105.494 106.77 96.4788 114.883Z" fill="#FF0000" stroke="#FF0000"/>
+                <path d="M58.1766 114.783C65.3887 121.274 73.8029 130.409 77.1085 134.166C77.7095 125 78.5509 104.145 77.1085 94.0481C75.3055 81.4268 61.7826 76.4685 53.669 84.5822C45.5553 92.6959 49.1614 106.669 58.1766 114.783Z" fill="#FF0000" stroke="#FF0000"/>
+                <defs>
+                <filter id="filter0_d_0_1" x="0" y="0" width="159" height="215.635" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dx="2" dy="2"/>
+                <feGaussianBlur stdDeviation="1"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+                </filter>
+                </defs>
+                </svg>
+                </div>
+            <div class="handCards"><svg width="160" height="216" viewBox="0 0 160 216" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#filter0_d_0_1)">
+                <rect width="155.596" height="212" rx="19" fill="white"/>
+                <rect x="0.5" y="0.5" width="154.596" height="211" rx="18.5" stroke="black"/>
+                </g>
+                <path d="M32.3516 54.0562V9L51.3894 31.8454L32.3516 54.0562Z" fill="#FF0000" stroke="#FF0000"/>
+                <path d="M31.717 54.0562V9L12.6791 31.8454L31.717 54.0562Z" fill="#FF0000" stroke="#FF0000"/>
+                <path d="M124.713 54.7353V9.67908L143.751 32.5245L124.713 54.7353Z" fill="#FF0000" stroke="#FF0000"/>
+                <path d="M124.078 54.7353V9.67908L105.041 32.5245L124.078 54.7353Z" fill="#FF0000" stroke="#FF0000"/>
+                <path d="M31.6724 202.106V157.05L50.7103 179.895L31.6724 202.106Z" fill="#FF0000" stroke="#FF0000"/>
+                <path d="M31.0378 202.106V157.05L12 179.895L31.0378 202.106Z" fill="#FF0000" stroke="#FF0000"/>
+                <path d="M124.713 200.748V155.692L143.751 178.537L124.713 200.748Z" fill="#FF0000" stroke="#FF0000"/>
+                <path d="M124.078 200.748V155.692L105.041 178.537L124.078 200.748Z" fill="#FF0000" stroke="#FF0000"/>
+                <path d="M77.8531 125.365V80.3083L96.891 103.154L77.8531 125.365Z" fill="#FF0000" stroke="#FF0000"/>
+                <path d="M77.2185 125.365V80.3083L58.1807 103.154L77.2185 125.365Z" fill="#FF0000" stroke="#FF0000"/>
+                <defs>
+                <filter id="filter0_d_0_1" x="0" y="0" width="159.596" height="216" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dx="2" dy="2"/>
+                <feGaussianBlur stdDeviation="1"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+                </filter>
+                </defs>
+                </svg>                
+                </div>
+        </div>
+        
+        
+        
         <div class="backCards2">
             <svg width="156" height="213" viewBox="0 0 156 213" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_0_1)">

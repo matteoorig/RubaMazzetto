@@ -12,6 +12,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    background-color: #138741;
 }
 .backCards{
     margin-left: 2%;
@@ -36,6 +37,9 @@
     border-radius: 19px;
 }
 .img{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-right: 2%;
     border-style: solid;
     border-width: 10px;
@@ -90,5 +94,19 @@
     font-family: 'Cutive', serif;
     font-size: 160%;
 }
-
-
+.handCards{
+    width: 162px;
+    height: 215px;
+    justify-self: center;
+    align-self: center;
+    
+    background: #138741;
+    box-sizing: border-box;
+    border-radius: 19px;
+}
+.HAND{
+    display: flex;
+    width: 33%;
+    align-items: center;
+    justify-content: center;
+}
