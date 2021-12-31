@@ -30,8 +30,8 @@
 }
 .cardSpot{
     margin: 0 50px;
-    width: 150px;
-    height: 200px;
+    width: 167px;
+    height: 215px;
     border: 2px dashed #ffffff;
     box-sizing: border-box;
     border-radius: 19px;
@@ -79,6 +79,7 @@
     font-family: 'Cutive', serif;
     font-size: 160%;
 }
+
 .retNames2{
     position: absolute;
     width: 187px;
