@@ -60,18 +60,19 @@
         <div class="enemyCards"></div>
         <div class="img"><img src="user.jpg"></div>
         <div class="retNames1">MATTEO</div>
+        <input type="button" onclick="random()" value="sdadsadads">
     </div>
     <div class="playTable">
-        <div class="cardSpot"></div>
-        <div class="cardSpot"></div>
-        <div class="cardSpot"></div>
-        <div class="cardSpot"></div>
-        <div class="cardSpot"></div>
-        <div class="cardSpot"></div>
-        <div class="cardSpot"></div>
-        <div class="cardSpot"></div>
-        <div class="cardSpot"></div>
-        <div class="cardSpot"></div>
+        <div class="cardSpot" id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="cardSpot" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="cardSpot" id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="cardSpot" id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="cardSpot" id="div5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="cardSpot" id="div6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="cardSpot" id="div7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="cardSpot" id="div8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="cardSpot" id="div9" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="cardSpot" id="div10" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         
     </div>
     <div class="container">
@@ -79,9 +80,8 @@
         <div class="retNames2">GIGI</div>
 
 
-
         <div class="HAND">
-            <div class="handCards"><svg width="159" height="216" viewBox="0 0 159 216" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="handCards" id="drag1" draggable="true" ondragstart="drag(event)"><svg width="159" height="216" viewBox="0 0 159 216" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_0_1)">
                 <rect width="155" height="212" rx="19" fill="white"/>
                 <rect x="0.5" y="0.5" width="154" height="211" rx="18.5" stroke="black"/>
@@ -104,7 +104,7 @@
                 </defs>
                 </svg>
                 </div>
-            <div class="handCards"><svg width="159" height="216" viewBox="0 0 159 216" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="handCards" id="drag2" draggable="true" ondragstart="drag(event)"><svg width="159" height="216" viewBox="0 0 159 216" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_0_1)">
                 <rect width="155" height="211.635" rx="19" fill="white"/>
                 <rect x="0.5" y="0.5" width="154" height="210.635" rx="18.5" stroke="black"/>
@@ -125,7 +125,7 @@
                 </defs>
                 </svg>
                 </div>
-            <div class="handCards"><svg width="160" height="216" viewBox="0 0 160 216" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="handCards" id="drag3" draggable="true" ondragstart="drag(event)"><svg width="160" height="216" viewBox="0 0 160 216" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_0_1)">
                 <rect width="155.596" height="212" rx="19" fill="white"/>
                 <rect x="0.5" y="0.5" width="154.596" height="211" rx="18.5" stroke="black"/>
@@ -155,7 +155,6 @@
                 </svg>                
                 </div>
         </div>
-        
         
         
         <div class="backCards2">
