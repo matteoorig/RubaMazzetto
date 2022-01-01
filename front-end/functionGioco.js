@@ -9,25 +9,19 @@
     document.getElementById("target").innerHTML=newText;
 }*/
 
-function random(){
+var tutteCarte = ["c1","c2","c3","c4","c5","c6","c7","cJ","cQ","cK","q1","q2","q3","q4","q5","q6","q7","qJ","qQ","qK","f1","f2","f3","f4","f5","f6","f7","fJ","fQ","fK","p1","p2","p3","p4","p5","p6","p7","pJ","pQ","pK"];
 
-    
-    var cont=0;
-    var i=0;
-    const tutteCarte = ["c1","c2","c3","c4","c5","c6","c7","cJ","cQ","cK","q1","q2","q3","q4","q5","q6","q7","qJ","qQ","qK","f1","f2","f3","f4","f5","f6","f7","fJ","fQ","fK","p1","p2","p3","p4","p5","p6","p7","pJ","pQ","pK"];
-    const carteGiaUsate = [];
-    const random = Math.floor(Math.random() * tutteCarte.length);
-    console.log(tutteCarte[random]);
-    carteGiaUsate[cont]=tutteCarte[random];
-    console.log(carteGiaUsate[cont]);
 
-    searchRandom();
+
+function random(){    
+  var random = Math.floor(Math.random() * tutteCarte.length);
+  console.log("CARTA USCITA: " + tutteCarte[random]);
+  tutteCarte.splice(random,1);
+  for(let i=0;i<tutteCarte.length;i++){
+    console.log(tutteCarte[i]);
+  }
 }
 
-var res = tutteCarte.sort(function() {
-    return 0.5 - Math.random();
-  });
-  console.log(res.slice(a,3))
 
 
 /*DRAG & DROP*/
