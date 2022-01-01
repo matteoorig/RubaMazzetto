@@ -12,7 +12,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: #138741;
+    background-color: red;
 }
 .backCards{
     margin-left: 2%;
@@ -24,14 +24,14 @@
     display: flex;
     height: 46%;
     width: 100%;
-    flex-flow: row wrap;
+    flex-flow: wrap;
     justify-content: center;
     align-items: center;
 }
 .cardSpot{
     margin: 0 50px;
-    width: 167px;
-    height: 215px;
+    width: 170px;
+    height: 218px;
     border: 2px dashed #ffffff;
     box-sizing: border-box;
     border-radius: 19px;
@@ -95,9 +95,18 @@
     font-family: 'Cutive', serif;
     font-size: 160%;
 }
+.HAND{
+    display: flex;
+    width: 33%;
+    align-items: center;
+    justify-content: center;
+    height: 95%;
+}
 .handCards{
-    width: 162px;
-    height: 215px;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 160px;
+    height: 216px;
     justify-self: center;
     align-self: center;
     
@@ -105,9 +114,7 @@
     box-sizing: border-box;
     border-radius: 19px;
 }
-.HAND{
-    display: flex;
-    width: 33%;
-    align-items: center;
-    justify-content: center;
+.handCards:hover{
+    transform: translateY(-10px);
 }
+
