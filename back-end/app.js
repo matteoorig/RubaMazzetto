@@ -8,7 +8,7 @@ class Client {
   }
 
   start() {
-    this.client.connect(8889, "localhost");
+    this.client.connect(2002, "localhost");
     this.client.on("connect", () => {
       console.log("client connesso");
       this.client.write("[CLIENT] Hellooooo");
@@ -18,19 +18,20 @@ class Client {
     });
   }
 
-  close(){
+  close() {
     this.client.destroy();
   }
 }
 
 class Listener {
   constructor() {
+    this.situazione = 0; // 0=>sta andando 1=>non va
     Net.createServer();
     this.server = new Net.Server();
   }
 
   start() {
-    this.server.listen(8889, () => {
+    this.server.listen(2003, () => {
       console.log("In ascolto...");
     });
 
@@ -48,11 +49,20 @@ class Listener {
     });
   }
 
-  close(){
-      this.server.close();
+  close() {
+    this.server.close();
   }
 }
 
+
+
+
+
+
+
+var avversario = null;
+
+var stato = 0;
 var connessioneInCorso = null;
 //apro l'applicazione su due pagine
 console.log("[APP] pronto");
@@ -61,10 +71,10 @@ const pagina = require("http").Server(app);
 const path = require("path");
 const http = require("http");
 
-app.get('/home', (req, res) =>{
+app.get("/home", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
-app.get('/second', (req, res) =>{
+app.get("/second", (req, res) => {
   res.sendFile(path.join(__dirname, "secondIndex.html"));
 });
 pagina.listen(8889);
@@ -81,18 +91,32 @@ wsServer.on("request", (request) => {
   const connection = request.accept(null, request.origin);
   connessioneInCorso = connection;
   const payLoad = {
-    "method": "Server",
+    method: "Server",
   };
   connection.send(JSON.stringify(payLoad));
-  connection.on("message", (message)=>{
-    //quando arriva un dato dal html viene elaborato qui 
+  connection.on("message", (message) => {
+    //quando arriva un dato dal html viene elaborato qui
     const result = JSON.parse(message.utf8Data);
+
+    if (result.method == "index") {
+      //pagina dove ascolto e posso inviare
+    }
+    if (result.method == "invio") {
+      //pagina dove ho gia accettato la connessione e gli devo dire il mio nickname
+      avversario.close();
+      avversario = new Client();
+      avversario.start();
+    }
+    if (result.method == "game") {
+      //pagina del gioco tengo la connessione accettata
+    }
     console.log(result.method);
   });
-  
 });
 
 //io ascolto sempre
+avversario = new Listener();
+avversario.start();
 
 //event() => pagina con <nomeutente>
 //stato attuale = 0
@@ -102,6 +126,3 @@ wsServer.on("request", (request) => {
 //event() => pagina con <nomeutente><indirizzoIp>
 //se invece voglio fare io una richiesta -- posso farla solo se stato = 0
 //stato attuale = 1
-
-
-
