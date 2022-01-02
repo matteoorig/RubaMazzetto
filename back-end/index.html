@@ -9,19 +9,14 @@
 
 <body>
     <h1>Pagina1</h1>
-    <input type="button" value="cip" onclick="vai()">
     <script>
         let ws = new WebSocket("ws://localhost:8888");
-        
-
-        window.onload = function(){
+        ws.addEventListener('open', (event) => {
             const payLoad = {
-            "method": "Pagina1",
+                "method": "index",
             }
             ws.send(JSON.stringify(payLoad));
-        }
-        
-
+        });
         ws.onmessage = message => {
             const response = JSON.parse(message.data);
             console.log(response.method);
