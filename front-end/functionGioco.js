@@ -27,12 +27,14 @@ function allowDrop(ev) {
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
     if(data=="drag1"){
-    document.getElementById('drag1').setAttribute('draggable', false);
-
+      document.getElementById('drag1').setAttribute('draggable', false);
+      document.getElementById('drag1').setAttribute("class","cartaPosizionata");
     }else if(data=="drag2"){
         document.getElementById('drag2').setAttribute('draggable', false);
+        document.getElementById('drag2').setAttribute("class","cartaPosizionata");
     }else if(data=="drag3"){
         document.getElementById('drag3').setAttribute('draggable', false);
+        document.getElementById('drag3').setAttribute("class","cartaPosizionata");
     }
     
 }
