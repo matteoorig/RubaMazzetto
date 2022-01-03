@@ -12,7 +12,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: red;
+    background-color: #138741;
 }
 .backCards{
     margin-left: 2%;
@@ -36,7 +36,7 @@
     justify-content: center;
     justify-self: center;
     align-items: center;
-    background: yellow;
+    background: violet;
 }
 .cardSpot{
     margin: 0 50px;
@@ -110,17 +110,17 @@
     width: 33%;
     align-items: center;
     justify-content: center;
-    height: 95%;
+    height: 100%;
+    background: red;
 }
 .handCards{
     margin-left: 5px;
     margin-right: 5px;
-    width: 160px;
-    height: 216px;
     justify-self: center;
     align-self: center;
     box-sizing: border-box;
     border-radius: 19px;
+    background: pink;
 }
 .handCards:hover{
     transform: translateY(-10px);
