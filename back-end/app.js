@@ -26,24 +26,31 @@ class Client {
 class Listener {
   constructor() {
     this.situazione = 0; // 0=>sta andando 1=>non va
+    this.connection = null;
+    this.cont = 0;
     Net.createServer();
     this.server = new Net.Server();
+    this.server.maxConnections = 1;
   }
 
   start() {
     this.server.listen(2003, () => {
       console.log("In ascolto...");
     });
-
     this.server.on("connection", (socket) => {
-      console.log("connessione effettuata");
+      if(this.cont == 0){ //la prima la accetto tutte le altre le rifiuto
+        this.connection = socket;
+        this.cont = 1;
+      }else{
+        socket.end();
+      }
 
-      socket.on("data", (data) => {
+      this.connection.on("data", (data) => {
         console.log(data.toString());
-        socket.write("Suca");
+        this.connection.write("Suca");
       });
 
-      socket.on("end", () => {
+      this.connection.on("end", () => {
         console.log("connessione chiusa");
       });
     });
@@ -51,6 +58,10 @@ class Listener {
 
   close() {
     this.server.close();
+  }
+
+  scrivi(data){
+    this.connection.write(data);
   }
 }
 
@@ -126,3 +137,12 @@ avversario.start();
 //event() => pagina con <nomeutente><indirizzoIp>
 //se invece voglio fare io una richiesta -- posso farla solo se stato = 0
 //stato attuale = 1
+
+
+function alertNewConnection(nickname){
+  const payLoad = {
+    method: "alert",
+    "nickname": nickname,
+  };
+  connessioneInCorso.send(JSON.stringify(payLoad))
+}

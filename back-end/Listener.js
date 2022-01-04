@@ -1,35 +1,26 @@
 var Net = require("net");
 
-class Listener {
-    constructor() {
-      this.situazione = 0; // 0=>sta andando 1=>non va
-      Net.createServer();
-      this.server = new Net.Server();
-    }
-  
-    start() {
-      this.server.listen(2002, () => {
-        console.log("In ascolto...");
-      });
-  
-      this.server.on("connection", (socket) => {
-        console.log("connessione effettuata");
-  
-        socket.on("data", (data) => {
-          console.log(data.toString());
-          socket.write("Suca");
-        });
-  
-        socket.on("end", () => {
-          console.log("connessione chiusa");
-        });
-      });
-    }
-  
-    close() {
-      this.server.close();
-    }
+class Client {
+  constructor() {
+    this.client = new Net.Socket();
+    this.client.setEncoding("utf-8");
+  }
+
+  start() {
+    this.client.connect(2003, "localhost");
+    this.client.on("connect", () => {
+      console.log("client connesso");
+      this.client.write("[CLIENT] Hellooooo");
+    });
+    this.client.on("data", (data) => {
+      console.log("Dati dal server: " + data);
+    });
+  }
+
+  close() {
+    this.client.destroy();
+  }
 }
 
-var client = new Listener();
+var client = new Client();
 client.start();
