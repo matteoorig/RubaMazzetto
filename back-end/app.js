@@ -2,16 +2,17 @@ var Net = require("net");
 const express = require("express");
 
 class Client {
-  constructor() {
+  constructor(ipSecondPlayer) {
+    this.ip = ipSecondPlayer;
     this.client = new Net.Socket();
     this.client.setEncoding("utf-8");
+
   }
 
   start() {
-    this.client.connect(2002, "localhost");
+    this.client.connect(2003, this.ip);
     this.client.on("connect", () => {
       console.log("client connesso");
-      this.client.write("[CLIENT] Hellooooo");
     });
     this.client.on("data", (data) => {
       console.log("Dati dal server: " + data);
@@ -20,6 +21,10 @@ class Client {
 
   close() {
     this.client.destroy();
+  }
+
+  scrivi(data){
+    this.client.write(data);
   }
 }
 
@@ -47,7 +52,12 @@ class Listener {
 
       this.connection.on("data", (data) => {
         console.log(data.toString());
-        this.connection.write("Suca");
+        var dataS = data.toString();
+
+        var arrayCom = dataS.split(";");
+        if(arrayCom[0] == "con"){ //un nuovo utente vuile connettersi con il suo indirizzo ip
+          alertNewConnection(arrayCom[1]);
+        }
       });
 
       this.connection.on("end", () => {
@@ -88,6 +98,9 @@ app.get("/home", (req, res) => {
 app.get("/second", (req, res) => {
   res.sendFile(path.join(__dirname, "secondIndex.html"));
 });
+app.get("/game", (req, res) => {
+  res.sendFile(path.join(__dirname, "game.html"));
+});
 pagina.listen(8889);
 
 //ascolto la comunicazione tra pagina html e server
@@ -120,6 +133,18 @@ wsServer.on("request", (request) => {
     }
     if (result.method == "game") {
       //pagina del gioco tengo la connessione accettata
+    }
+
+    if(result.method == "newGame"){
+      //prima chiudo sempre l'ascolto
+      avversario.close();
+      //evento creo connessione con già nomeutente ad un determinato indirizzo ip
+      avversario = new Client(result.indirizzoIp);
+      avversario.start();
+      avversario.scrivi("con;"+result.nomeutente+";"); //con;nickname;
+    }
+    if(result.method == "acceptNewUser"){
+      
     }
     console.log(result.method);
   });
