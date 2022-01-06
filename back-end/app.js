@@ -6,7 +6,6 @@ class Client {
     this.ip = ipSecondPlayer;
     this.client = new Net.Socket();
     this.client.setEncoding("utf-8");
-
   }
 
   start() {
@@ -67,6 +66,7 @@ class Listener {
   }
 
   close() {
+    this.connection.end();
     this.server.close();
   }
 
@@ -127,9 +127,7 @@ wsServer.on("request", (request) => {
     }
     if (result.method == "invio") {
       //pagina dove ho gia accettato la connessione e gli devo dire il mio nickname
-      avversario.close();
-      avversario = new Client();
-      avversario.start();
+      
     }
     if (result.method == "game") {
       //pagina del gioco tengo la connessione accettata
@@ -143,8 +141,8 @@ wsServer.on("request", (request) => {
       avversario.start();
       avversario.scrivi("con;"+result.nomeutente+";"); //con;nickname;
     }
-    if(result.method == "acceptNewUser"){
-      
+    if(result.method == "denyNewUser"){
+      avversario.close();
     }
     console.log(result.method);
   });

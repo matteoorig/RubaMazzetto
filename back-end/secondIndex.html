@@ -8,23 +8,20 @@
 </head>
 
 <body>
-
-    <body>
-        <h1>Pagina2</h1>
-        <script>
-            let ws = new WebSocket("ws://localhost:8888");
-            ws.addEventListener('open', (event) => {
-                const payLoad = {
-                    "method": "invio",
-                }
-                ws.send(JSON.stringify(payLoad));
-            });
-            ws.onmessage = message => {
-                const response = JSON.parse(message.data);
-                console.log(response.method);
+    <h1>Pagina2</h1>
+    <script>
+        let ws = new WebSocket("ws://localhost:8888");
+        ws.addEventListener('open', (event) => {
+            const payLoad = {
+                "method": "invio",
             }
-        </script>
-    </body>
+            ws.send(JSON.stringify(payLoad));
+        });
+        ws.onmessage = message => {
+            const response = JSON.parse(message.data);
+            console.log(response.method);
+        }
+    </script>
 </body>
 
 </html>
