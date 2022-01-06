@@ -22,8 +22,39 @@
         });
         ws.onmessage = message => {
             const response = JSON.parse(message.data);
+            if (response.method == "alert") {
+                var text = "[" + response.nickname + "] vuole giocare!\n Accetta!";
+                if (confirm(text) == true) {
+                    //OK dire che hai accettato e andare alla pagina del gioco
+                    window.location.replace('/game');
+                } else {
+                    //cancel rifiutare la connessione in entrata
+                    const payLoad = {
+                        "method": "denyNewUser",
+                    }
+                    ws.send(JSON.stringify(payLoad));
+                }
+            }
             console.log(response.method);
         }
+
+
+        document.getElementById("btnGo").addEventListener("click", () => {
+            var nomeutente = document.getElementById("nomeUtente").value;
+            var indirizzoIP = document.getElementById("ip").value;
+            if (nomeutente == "" || indirizzoIP == "") {
+                alert("i campi nomeutente o indiirzzo ip sono vuoti");
+            } else {
+                const payLoad = {
+                    "method": "newGame",
+                    "nomeutente": nomeutente,
+                    "indirizzoIp": indirizzoIP,
+                }
+                ws.send(JSON.stringify(payLoad));
+            }
+
+
+        });
     </script>
 </body>
 
