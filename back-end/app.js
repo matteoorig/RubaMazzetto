@@ -126,6 +126,17 @@ class Client {
         };
         connessioneInCorso.send(JSON.stringify(payLoad));
       }
+      
+      if(arrayCom[0] == "crd"){
+        var splitPerVirgola = arrayCom[1].split(",");
+        const payLoad = {
+          "method": "setCarte", //setup table se mescola le carte l'avversario
+          "cartaUser1": splitPerVirgola[0],
+          "cartaUser2": splitPerVirgola[1],
+          "cartaUser2": splitPerVirgola[2],
+        };
+        connessioneInCorso.send(JSON.stringify(payLoad));
+      }
     });
   }
 
@@ -223,6 +234,17 @@ class Listener {
           };
           connessioneInCorso.send(JSON.stringify(payLoad));
         }
+
+        if(arrayCom[0] == "crd"){
+          var splitPerVirgola = arrayCom[1].split(",");
+          const payLoad = {
+            "method": "setCarte", //setup table se mescola le carte l'avversario
+            "cartaUser1": splitPerVirgola[0],
+            "cartaUser2": splitPerVirgola[1],
+            "cartaUser2": splitPerVirgola[2],
+          };
+          connessioneInCorso.send(JSON.stringify(payLoad));
+        }
       });
 
       this.connection.on("end", () => {
@@ -310,6 +332,7 @@ pagina.listen(8889);
 
 //ascolto la comunicazione tra pagina html e server
 const webSocketServer = require("websocket").server;
+const { response } = require("express");
 const httpServer = http.createServer();
 httpServer.listen(8888);
 const wsServer = new webSocketServer({
@@ -464,4 +487,6 @@ function tableCards() {
       nMaz +
       ";"
   );
+
+  avversario.scrivi("crd;"+carteDaInviare[7]+","+carteDaInviare[8]+","+carteDaInviare[9]+";");
 }
