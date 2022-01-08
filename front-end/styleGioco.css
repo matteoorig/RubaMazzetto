@@ -1,7 +1,6 @@
 *{
     padding: 0;
     margin: 0;
-    background-color: #138741;
     overflow-y:hidden;
 }
 
@@ -36,7 +35,7 @@
     justify-content: center;
     justify-self: center;
     align-items: center;
-    background: violet;
+    background: #138741;
 }
 .cardSpot{
     margin: 0 50px;
@@ -59,6 +58,7 @@
     background: #6CA683;
     border-radius: 90%;
     position: relative;
+    padding: 10;
 }
 .img2{
     display: flex;
@@ -73,6 +73,7 @@
     background: #6CA683;
     border-radius: 90%;
     position: relative;
+    padding: 10;
 }
 .retNames1{
     position: absolute;
@@ -111,7 +112,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    background: red;
+    background: #138741;
 }
 .handCards{
     margin-left: 5px;
@@ -128,4 +129,49 @@
 .cartaPosizionata{
 
 }
+.containerDadi{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top:50%;
+    left:50%;
+    width: 20%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    visibility: visible;
+}
+.diceWrapper{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 
+}
+.btnDadi{
+    border-radius: 5px;
+    margin-top: 10px;
+    background-color: #e92e3d;
+    width: 35%;
+    height: 20%;
+    
+}
+.shake {
+    animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(8deg);
+    }
+    50% {
+        transform: rotate(-8deg);
+    }
+    100% {
+        transform: rotate(8deg);
+    }
+}
