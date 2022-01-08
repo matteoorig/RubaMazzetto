@@ -171,7 +171,7 @@ class Listener {
               host_client = "HOST";
               this.connection.write("dad;client;");
               //devo distribuire le carte
-              shuffleCards();
+              tableCards();
             } else if (dadoUtente > arrayCom[1]) {
               //se io vinco
               host_client = "CLIENT";
@@ -189,7 +189,7 @@ class Listener {
               //io ho perso quindi divento HOST
               host_client = "HOST";
               //devo distribuire le carte
-              shuffleCards();
+              tableCards();
               console.log("Faccio le carte");
             }
           }
