@@ -26,6 +26,7 @@ class Client {
       var arrayCom = data.split(";");
       if (arrayCom[0] == "con") {
         nomeAvversario = arrayCom[1];
+        sendNameUser();
       }
 
       if (arrayCom[0] == "dad") {
@@ -161,6 +162,10 @@ class Listener {
     //this.server.close();
   }
 
+  closeServer(){
+    this.server.close();
+  }
+
   scrivi(data) {
     this.connection.write(data);
   }
@@ -269,7 +274,7 @@ wsServer.on("request", (request) => {
       //setto il mio nome utente
       nomeUtenteF = result.nomeutente;
       //prima chiudo sempre l'ascolto
-      avversario.close();
+      avversario.closeServer();
       //evento creo connessione con già nomeutente ad un determinato indirizzo ip
       avversario = new Client(result.indirizzoIp);
       avversario.start();
@@ -326,6 +331,14 @@ function refreshPage(){
   connessioneInCorso.send(JSON.stringify(payLoad));
 }
 
+function sendNameUser(){
+  const payLoad = {
+    "method": "addData",
+    "nomeUtente": nomeUtenteF,
+    "nomeAvversario": nomeAvversario,
+  }
+  connessioneInCorso.send(JSON.stringify(payLoad));
+}
 
 function shuffleCards(){
 
