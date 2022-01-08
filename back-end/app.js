@@ -1,7 +1,7 @@
 var nomeUtenteF = null;
 var nomeAvversario = null;
 
-var maz = ""; //nome della carta sopra al mazzo da rubare
+var maz = " "; //nome della carta sopra al mazzo da rubare
 var nMaz = 0; //numero delle carte prese
 const cards = [
   "C1",
@@ -134,7 +134,7 @@ class Client {
           "method": "setCarte", //setup table se mescola le carte l'avversario
           "cartaUser1": splitPerVirgola[0],
           "cartaUser2": splitPerVirgola[1],
-          "cartaUser2": splitPerVirgola[2],
+          "cartaUser3": splitPerVirgola[2],
         };
         connessioneInCorso.send(JSON.stringify(payLoad));
       }
@@ -242,7 +242,7 @@ class Listener {
             "method": "setCarte", //setup table se mescola le carte l'avversario
             "cartaUser1": splitPerVirgola[0],
             "cartaUser2": splitPerVirgola[1],
-            "cartaUser2": splitPerVirgola[2],
+            "cartaUser3": splitPerVirgola[2],
           };
           connessioneInCorso.send(JSON.stringify(payLoad));
         }
@@ -488,8 +488,8 @@ function tableCards() {
       nMaz +
       ";"
   );
-
+  console.log(carteDaInviare);
   avversario.scrivi("crd;"+carteDaInviare[7]+","+carteDaInviare[8]+","+carteDaInviare[9]+";");
 
-  console.log(carteDaInviare);
+  
 }
