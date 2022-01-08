@@ -237,6 +237,7 @@ class Listener {
         }
 
         if(arrayCom[0] == "crd"){
+          console.log("ciao cards event")
           var splitPerVirgola = arrayCom[1].split(",");
           const payLoad = {
             "method": "setCarte", //setup table se mescola le carte l'avversario
@@ -489,7 +490,12 @@ function tableCards() {
       ";"
   );
   console.log(carteDaInviare);
-  avversario.scrivi("crd;"+carteDaInviare[7]+","+carteDaInviare[8]+","+carteDaInviare[9]+";");
+
+  //come prendere due
+  setTimeout(()=>{
+    avversario.scrivi("crd;"+carteDaInviare[7]+","+carteDaInviare[8]+","+carteDaInviare[9]+";");
+  }, 1000);
+  
 
   
 }
