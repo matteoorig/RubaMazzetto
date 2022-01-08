@@ -128,6 +128,7 @@ class Client {
       }
       
       if(arrayCom[0] == "crd"){
+        
         var splitPerVirgola = arrayCom[1].split(",");
         const payLoad = {
           "method": "setCarte", //setup table se mescola le carte l'avversario

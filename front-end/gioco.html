@@ -165,10 +165,11 @@
             }
 
             if(response.method == "setCarte"){
-                cartUtente1 = response.cartUser1;
-                cartUtente2 = response.cartUser2;
-                cartUtente3 = response.cartUser3;
                 
+                cartUtente1 = response.cartaUser1;
+                cartUtente2 = response.cartaUser2;
+                cartUtente3 = response.cartaUser3;
+                console.log(cartUtente1, cartUtente2, cartUtente3);
                 //CARTE CHE HO IN MANO
                 if (cartUtente1 == "C1" || cartUtente2 == "C1" || cartUtente3 == "C1") {
                     $('#divHand').append(svgArr[0]);
