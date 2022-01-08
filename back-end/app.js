@@ -1,3 +1,10 @@
+var nomeUtenteF = null;
+var nomeAvversario = null;
+
+var host_client = ""; //HOST = chi manda la richiesta    //CLIENT = chi accetta la richiesta     //CHI PERDE LANCIO DADI DIVENTA HOST PARTITA
+//situazione dadi
+var dadoUtente = null;
+var dadoAvversario = null;
 var Net = require("net");
 const express = require("express");
 
@@ -15,6 +22,50 @@ class Client {
     });
     this.client.on("data", (data) => {
       console.log("Dati dal server: " + data);
+
+      var arrayCom = data.split(";");
+      if (arrayCom[0] == "con") {
+        nomeAvversario = arrayCom[1];
+      }
+
+      if (arrayCom[0] == "dad") {
+        if (host_client == "HOST") { // controllo se sono HOST
+          if (dadoUtente == arrayCom[1]) {
+            //non so se il confronto è perfetto //se sono uguali
+            this.client.write("dad;retry;");
+            //ricaricare la pagina game per rifare il lancio dei dadi
+            refreshPage();
+          } else if (dadoUtente < arrayCom[1]) {
+            //se io perdo
+            host_client = "HOST";
+            this.client.write("dad;client;");
+            //devo distribuire le carte
+            console.log("IO HO PERSO E FACCIO LE CARTE")
+            shuffleCards();
+            
+          } else if (dadoUtente > arrayCom[1]) {
+            //se io vinco
+            host_client = "CLIENT";
+            this.client.write("dad;host;");
+          }
+        }else if(host_client == "CLIENT"){ //se sono CLIENT
+          if(arrayCom[1] == "retry"){
+            //ricaricare la pagina game per rifare il lancio dei dadi
+            refreshPage();
+          }else if(arrayCom[1] == "client"){
+            //io ho vinto quindi rimango client e aspetto che mi invii le carte l'HOST
+            host_client = "CLIENT";
+          }else if(arrayCom[1] == "host"){
+            //io ho perso quindi divento HOST
+            host_client = "HOST";
+            //devo distribuire le carte
+            console.log("IO HO PERSO E FACCIO LE CARTE")
+            shuffleCards();
+            
+          }
+        }
+      }
+
     });
   }
 
@@ -22,7 +73,7 @@ class Client {
     this.client.destroy();
   }
 
-  scrivi(data){
+  scrivi(data) {
     this.client.write(data);
   }
 }
@@ -42,10 +93,11 @@ class Listener {
       console.log("In ascolto...");
     });
     this.server.on("connection", (socket) => {
-      if(this.cont == 0){ //la prima la accetto tutte le altre le rifiuto
+      if (this.cont == 0) {
+        //la prima la accetto tutte le altre le rifiuto
         this.connection = socket;
         this.cont = 1;
-      }else{
+      } else {
         socket.end();
       }
 
@@ -54,8 +106,47 @@ class Listener {
         var dataS = data.toString();
 
         var arrayCom = dataS.split(";");
-        if(arrayCom[0] == "con"){ //un nuovo utente vuile connettersi con il suo indirizzo ip
+        if (arrayCom[0] == "con") {
+          //un nuovo utente vuile connettersi con il suo indirizzo ip
           alertNewConnection(arrayCom[1]);
+
+          nomeAvversario = arrayCom[1];
+        }
+
+
+        if (arrayCom[0] == "dad") {
+          if (host_client == "HOST") { // controllo se sono HOST
+            if (dadoUtente == arrayCom[1]) {
+              //non so se il confronto è perfetto //se sono uguali
+              this.connection.write("dad;retry;");
+              //ricaricare la pagina game per rifare il lancio dei dadi
+              refreshPage();
+            } else if (dadoUtente < arrayCom[1]) {
+              //se io perdo
+              host_client = "HOST";
+              this.connection.write("dad;client;");
+              //devo distribuire le carte
+              shuffleCards();
+            } else if (dadoUtente > arrayCom[1]) {
+              //se io vinco
+              host_client = "CLIENT";
+              this.connection.write("dad;host;");
+            }
+          }else if(host_client == "CLIENT"){ //se sono CLIENT
+            if(arrayCom[1] == "retry"){
+              //ricaricare la pagina game per rifare il lancio dei dadi
+              refreshPage();
+            }else if(arrayCom[1] == "client"){
+              //io ho vinto quindi rimango client e aspetto che mi invii le carte l'HOST
+              host_client = "CLIENT";
+            }else if(arrayCom[1] == "host"){
+              //io ho perso quindi divento HOST
+              host_client = "HOST";
+              //devo distribuire le carte
+              shuffleCards();
+              console.log("Faccio le carte");
+            }
+          }
         }
       });
 
@@ -70,16 +161,10 @@ class Listener {
     //this.server.close();
   }
 
-  scrivi(data){
+  scrivi(data) {
     this.connection.write(data);
   }
 }
-
-
-
-
-
-
 
 var avversario = null;
 
@@ -167,30 +252,48 @@ wsServer.on("request", (request) => {
       //pagina dove ascolto e posso inviare
     }
     if (result.method == "invio") {
-      //pagina dove ho gia accettato la connessione e gli devo dire il mio nickname
-      
+      //pagina dove ho gia accettato la connessione e gli devo dire il mio nickname e quello dell'avversario
+      const payLoad = {
+        "method": "addData",
+        "nomeUtente": nomeUtenteF,
+        "nomeAvversario": nomeAvversario,
+      }
+      connessioneInCorso.send(JSON.stringify(payLoad));
+
     }
     if (result.method == "game") {
       //pagina del gioco tengo la connessione accettata
     }
 
-    if(result.method == "newGame"){
+    if (result.method == "newGame") {
+      //setto il mio nome utente
+      nomeUtenteF = result.nomeutente;
       //prima chiudo sempre l'ascolto
       avversario.close();
       //evento creo connessione con già nomeutente ad un determinato indirizzo ip
       avversario = new Client(result.indirizzoIp);
       avversario.start();
-      avversario.scrivi("con;"+result.nomeutente+";"); //con;nickname;   
+      avversario.scrivi("con;" + result.nomeutente + ";"); //con;nickname;
+      //se mando richiesta sono HOST
+      host_client = "HOST";
     }
-    if(result.method == "denyNewUser"){
+    if (result.method == "denyNewUser") {
       avversario.close();
     }
-    if(result.method == "sendNickNewGame"){
-      avversario.scrivi("con;"+result.nomeutente+";") //con;nickname;
+    if (result.method == "sendNickNewGame") {
+      nomeUtenteF = result.nomeutente;
+      avversario.scrivi("con;" + result.nomeutente + ";"); //con;nickname;
+      host_client = "CLIENT";
     }
 
+    if (result.method == "rollDice") {
+      //setto il valore del dado per i successivi confronti
+      dadoUtente = result.dad;
+      if (host_client == "CLIENT") {
+        avversario.scrivi("dad;" + result.dad + ";");
+      }
+    }
 
-    
     console.log(result.method);
   });
 });
@@ -208,11 +311,22 @@ avversario.start();
 //se invece voglio fare io una richiesta -- posso farla solo se stato = 0
 //stato attuale = 1
 
-
-function alertNewConnection(nickname){
+function alertNewConnection(nickname) {
   const payLoad = {
     method: "alert",
-    "nickname": nickname,
+    nickname: nickname,
   };
-  connessioneInCorso.send(JSON.stringify(payLoad))
+  connessioneInCorso.send(JSON.stringify(payLoad));
+}
+
+function refreshPage(){
+  const payLoad = {
+    method: "refresh",
+  };
+  connessioneInCorso.send(JSON.stringify(payLoad));
+}
+
+
+function shuffleCards(){
+
 }

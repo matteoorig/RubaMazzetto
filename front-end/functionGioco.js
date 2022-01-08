@@ -1,14 +1,4 @@
-let ws = new WebSocket("ws://localhost:8888");
-ws.addEventListener("open", (event) => {
-  const payLoad = {
-    method: "invio",
-  };
-  ws.send(JSON.stringify(payLoad));
-});
-ws.onmessage = (message) => {
-  const response = JSON.parse(message.data);
-  console.log(response.method);
-};
+
 
 const carta = document.querySelector(".handCards");
 const playTable = document.getElementById("pt");

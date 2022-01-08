@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="styleGioco.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
-        
+
     </style>
 </head>
 
@@ -72,7 +72,7 @@
         </div>
         <div class="enemyCards"></div>
         <div class="img"></div>
-        <div class="retNames1">MATTEO</div>
+        <div class="retNames1" id="nomeAvversario">MATTEO</div>
 
     </div>
     <div class="campo">
@@ -84,7 +84,7 @@
         <div class="img2" id="target">
             <!--<input type="file" accept=".png,.jpg" id="select_image" onchange="impostaImg()" aoaoao/>-->
         </div>
-        <div class="retNames2">GIGI</div>
+        <div class="retNames2" id="nomeUtente">GIGI</div>
 
         <div class="HAND" id="divHand">
 
@@ -136,12 +136,33 @@
 
 
     <script>
-        const images = ["./dadi/dado1.svg","./dadi/dado2.svg","./dadi/dado3.svg","./dadi/dado4.svg","./dadi/dado5.svg","./dadi/dado6.svg",];
+        let ws = new WebSocket("ws://localhost:8888");
+        ws.addEventListener("open", (event) => {
+            const payLoad = {
+                method: "invio",
+            };
+            ws.send(JSON.stringify(payLoad));
+        });
+        ws.onmessage = (message) => {
+            const response = JSON.parse(message.data);
+            if(response.method == "refresh"){
+                window.location.replace('/game');
+            }
+            console.log(response.method);
+
+            if(response.method == "addData"){
+                document.getElementById("nomeUtente").innerHTML = response.nomeUtente;
+                document.getElementById("nomeAvversario").innerHTML = response.nomeAvversario;
+            }
+        };
+
+        let dieOneValue = null;
+        const images = ["./dadi/dado1.svg", "./dadi/dado2.svg", "./dadi/dado3.svg", "./dadi/dado4.svg", "./dadi/dado5.svg", "./dadi/dado6.svg",];
         const dice = document.querySelectorAll("img");
         var DOM_img = document.createElement("img");
         DOM_img.width = 40;
-        
-        
+
+
         const posizioneDadoFine = document.querySelector("#target");
         console.log(posizioneDadoFine);
         function rollTheDice() {
@@ -151,14 +172,25 @@
             setTimeout(() => {
                 dice.forEach((die) => {
                     die.classList.remove("shake");
-                }) 
-                let dieOneValue = Math.floor(Math.random()*6);
-                document.querySelector("#dad1").setAttribute("src",images[dieOneValue]);
+                })
+                dieOneValue = Math.floor(Math.random() * 6);
+                document.querySelector("#dad1").setAttribute("src", images[dieOneValue]);
                 DOM_img.src = images[dieOneValue];
                 posizioneDadoFine.appendChild(DOM_img);
                 document.getElementById("dado").style.visibility = "hidden";
+
+                dieOneValue = dieOneValue + 1;
+                //dialogo con app.js quando lancio i dadi
+
+                const payLoad = {
+                    "method": "rollDice",
+                    "dad": dieOneValue,
+
+                }
+                ws.send(JSON.stringify(payLoad));
             }, 1000);
-            
+
+
         }
 
 
