@@ -98,14 +98,50 @@ app.get("/dad1.svg", (req, res) => {
 });
 
 app.get("/home", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "../front-end/index.html"));
 });
+app.get("/styleIndex.css", (req, res) => {
+  res.sendFile(path.join(__dirname, "../front-end/styleIndex.css"));
+});
+app.get("/functionIndex.js", (req, res) => {
+  res.sendFile(path.join(__dirname, "../front-end/functionIndex.js"));
+});
+app.get("/titolo.png", (req, res) => {
+  res.sendFile(path.join(__dirname, "../front-end/titolo.png"));
+});
+
 app.get("/second", (req, res) => {
-  res.sendFile(path.join(__dirname, "secondIndex.html"));
+  res.sendFile(path.join(__dirname, "../front-end/nickname.html"));
 });
+
 app.get("/game", (req, res) => {
-  res.sendFile(path.join(__dirname, "game.html"));
+  res.sendFile(path.join(__dirname, "../front-end/gioco.html"));
 });
+app.get("/styleGioco.css", (req, res) => {
+  res.sendFile(path.join(__dirname, "../front-end/styleGioco.css"));
+});
+app.get("/functionGioco.js", (req, res) => {
+  res.sendFile(path.join(__dirname, "../front-end/functionGioco.js"));
+});
+app.get("/dadi/dado1.svg", (req, res) => {
+  res.sendFile(path.join(__dirname, "../front-end/dadi/dado1.svg"));
+});
+app.get("/dadi/dado2.svg", (req, res) => {
+  res.sendFile(path.join(__dirname, "../front-end/dadi/dado2.svg"));
+});
+app.get("/dadi/dado3.svg", (req, res) => {
+  res.sendFile(path.join(__dirname, "../front-end/dadi/dado3.svg"));
+});
+app.get("/dadi/dado4.svg", (req, res) => {
+  res.sendFile(path.join(__dirname, "../front-end/dadi/dado4.svg"));
+});
+app.get("/dadi/dado5.svg", (req, res) => {
+  res.sendFile(path.join(__dirname, "../front-end/dadi/dado5.svg"));
+});
+app.get("/dadi/dado6.svg", (req, res) => {
+  res.sendFile(path.join(__dirname, "../front-end/dadi/dado6.svg"));
+});
+
 pagina.listen(8889);
 
 //ascolto la comunicazione tra pagina html e server
@@ -144,11 +180,17 @@ wsServer.on("request", (request) => {
       //evento creo connessione con già nomeutente ad un determinato indirizzo ip
       avversario = new Client(result.indirizzoIp);
       avversario.start();
-      avversario.scrivi("con;"+result.nomeutente+";"); //con;nickname;
+      avversario.scrivi("con;"+result.nomeutente+";"); //con;nickname;   
     }
     if(result.method == "denyNewUser"){
       avversario.close();
     }
+    if(result.method == "sendNickNewGame"){
+      avversario.scrivi("con;"+result.nomeutente+";") //con;nickname;
+    }
+
+
+    
     console.log(result.method);
   });
 });

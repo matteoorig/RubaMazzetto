@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cutive&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styleIndex.css">
-    <script src="functionIndex.js"></script>
 </head>
 
 <body>
@@ -66,7 +65,7 @@
             </svg>
             <input class="username" type="text" placeholder="INDIRIZZO IP" id="indIP">
         </div>
-        <input class="btnGioca" id="btnGioca" type="button" value="GIOCA" onclick="btnGioca()">
+        <input class="btnGioca" id="btnGioca" type="button" value="GIOCA">
     </div>
     <div class="carte">
         <svg width="894" height="346" viewBox="0 0 894 346" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -167,6 +166,51 @@
             </defs>
         </svg>
     </div>
+
+    <script>
+        let ws = new WebSocket("ws://localhost:8888");
+        ws.addEventListener('open', (event) => {
+            const payLoad = {
+                "method": "index",
+            }
+            ws.send(JSON.stringify(payLoad));
+        });
+        ws.onmessage = message => {
+            const response = JSON.parse(message.data);
+            if (response.method == "alert") {
+                var text = "[" + response.nickname + "] vuole giocare!\n Accetta!";
+                if (confirm(text) == true) {
+                    //OK dire che hai accettato e andare alla pagina del gioco
+                    window.location.replace('/second');
+                    
+                } else {
+                    //cancel rifiutare la connessione in entrata
+                    const payLoad = {
+                        "method": "denyNewUser",
+                    }
+                    ws.send(JSON.stringify(payLoad));
+                }
+            }
+            console.log(response.method);
+        }
+
+
+        document.getElementById("btnGioca").addEventListener("click", () => {
+            console.log("helo")
+            var nomeutente = document.getElementById("nickname").value;
+            var indirizzoIP = document.getElementById("indIP").value;
+            if (nomeutente == "" || indirizzoIP == "") {
+                alert("i campi nomeutente o indiirizzo ip sono vuoti");
+            } else {
+                const payLoad = {
+                    "method": "newGame",
+                    "nomeutente": nomeutente,
+                    "indirizzoIp": indirizzoIP,
+                }
+                ws.send(JSON.stringify(payLoad));
+            }
+        });
+    </script>
 </body>
 
 </html>
