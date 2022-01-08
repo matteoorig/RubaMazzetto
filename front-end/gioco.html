@@ -154,6 +154,10 @@
                 document.getElementById("nomeUtente").innerHTML = response.nomeUtente;
                 document.getElementById("nomeAvversario").innerHTML = response.nomeAvversario;
             }
+
+            if(response.method == "setupTable"){
+                console.log(response);
+            }
         };
 
         let dieOneValue = null;

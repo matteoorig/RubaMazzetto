@@ -1,6 +1,51 @@
 var nomeUtenteF = null;
 var nomeAvversario = null;
 
+var maz = "";   //nome della carta sopra al mazzo da rubare
+var nMaz = 0;  //numero delle carte prese
+const cards = [
+  "C1",
+  "C2",
+  "C3",
+  "C4",
+  "C5",
+  "C6",
+  "C7",
+  "CJ",
+  "CQ",
+  "CK",
+  "Q1",
+  "Q2",
+  "Q3",
+  "Q4",
+  "Q5",
+  "Q6",
+  "Q7",
+  "QJ",
+  "QQ",
+  "QK",
+  "F1",
+  "F2",
+  "F3",
+  "F4",
+  "F5",
+  "F6",
+  "F7",
+  "FJ",
+  "FQ",
+  "FK",
+  "P1",
+  "P2",
+  "P3",
+  "P4",
+  "P5",
+  "P6",
+  "P7",
+  "PJ",
+  "PQ",
+  "PK",
+];
+
 var host_client = ""; //HOST = chi manda la richiesta    //CLIENT = chi accetta la richiesta     //CHI PERDE LANCIO DADI DIVENTA HOST PARTITA
 //situazione dadi
 var dadoUtente = null;
@@ -30,7 +75,8 @@ class Client {
       }
 
       if (arrayCom[0] == "dad") {
-        if (host_client == "HOST") { // controllo se sono HOST
+        if (host_client == "HOST") {
+          // controllo se sono HOST
           if (dadoUtente == arrayCom[1]) {
             //non so se il confronto è perfetto //se sono uguali
             this.client.write("dad;retry;");
@@ -41,32 +87,30 @@ class Client {
             host_client = "HOST";
             this.client.write("dad;client;");
             //devo distribuire le carte
-            console.log("IO HO PERSO E FACCIO LE CARTE")
-            shuffleCards();
-            
+            console.log("IO HO PERSO E FACCIO LE CARTE");
+            tableCards();
           } else if (dadoUtente > arrayCom[1]) {
             //se io vinco
             host_client = "CLIENT";
             this.client.write("dad;host;");
           }
-        }else if(host_client == "CLIENT"){ //se sono CLIENT
-          if(arrayCom[1] == "retry"){
+        } else if (host_client == "CLIENT") {
+          //se sono CLIENT
+          if (arrayCom[1] == "retry") {
             //ricaricare la pagina game per rifare il lancio dei dadi
             refreshPage();
-          }else if(arrayCom[1] == "client"){
+          } else if (arrayCom[1] == "client") {
             //io ho vinto quindi rimango client e aspetto che mi invii le carte l'HOST
             host_client = "CLIENT";
-          }else if(arrayCom[1] == "host"){
+          } else if (arrayCom[1] == "host") {
             //io ho perso quindi divento HOST
             host_client = "HOST";
             //devo distribuire le carte
-            console.log("IO HO PERSO E FACCIO LE CARTE")
-            shuffleCards();
-            
+            console.log("IO HO PERSO E FACCIO LE CARTE");
+            tableCards();
           }
         }
       }
-
     });
   }
 
@@ -114,9 +158,9 @@ class Listener {
           nomeAvversario = arrayCom[1];
         }
 
-
         if (arrayCom[0] == "dad") {
-          if (host_client == "HOST") { // controllo se sono HOST
+          if (host_client == "HOST") {
+            // controllo se sono HOST
             if (dadoUtente == arrayCom[1]) {
               //non so se il confronto è perfetto //se sono uguali
               this.connection.write("dad;retry;");
@@ -133,14 +177,15 @@ class Listener {
               host_client = "CLIENT";
               this.connection.write("dad;host;");
             }
-          }else if(host_client == "CLIENT"){ //se sono CLIENT
-            if(arrayCom[1] == "retry"){
+          } else if (host_client == "CLIENT") {
+            //se sono CLIENT
+            if (arrayCom[1] == "retry") {
               //ricaricare la pagina game per rifare il lancio dei dadi
               refreshPage();
-            }else if(arrayCom[1] == "client"){
+            } else if (arrayCom[1] == "client") {
               //io ho vinto quindi rimango client e aspetto che mi invii le carte l'HOST
               host_client = "CLIENT";
-            }else if(arrayCom[1] == "host"){
+            } else if (arrayCom[1] == "host") {
               //io ho perso quindi divento HOST
               host_client = "HOST";
               //devo distribuire le carte
@@ -162,7 +207,7 @@ class Listener {
     //this.server.close();
   }
 
-  closeServer(){
+  closeServer() {
     this.server.close();
   }
 
@@ -259,12 +304,11 @@ wsServer.on("request", (request) => {
     if (result.method == "invio") {
       //pagina dove ho gia accettato la connessione e gli devo dire il mio nickname e quello dell'avversario
       const payLoad = {
-        "method": "addData",
-        "nomeUtente": nomeUtenteF,
-        "nomeAvversario": nomeAvversario,
-      }
+        method: "addData",
+        nomeUtente: nomeUtenteF,
+        nomeAvversario: nomeAvversario,
+      };
       connessioneInCorso.send(JSON.stringify(payLoad));
-
     }
     if (result.method == "game") {
       //pagina del gioco tengo la connessione accettata
@@ -324,22 +368,57 @@ function alertNewConnection(nickname) {
   connessioneInCorso.send(JSON.stringify(payLoad));
 }
 
-function refreshPage(){
+function refreshPage() {
   const payLoad = {
     method: "refresh",
   };
   connessioneInCorso.send(JSON.stringify(payLoad));
 }
 
-function sendNameUser(){
+function sendNameUser() {
   const payLoad = {
-    "method": "addData",
-    "nomeUtente": nomeUtenteF,
-    "nomeAvversario": nomeAvversario,
-  }
+    method: "addData",
+    nomeUtente: nomeUtenteF,
+    nomeAvversario: nomeAvversario,
+  };
   connessioneInCorso.send(JSON.stringify(payLoad));
 }
 
-function shuffleCards(){
+function tableCards() {
+  var carteDaInviare = [];
+  var rand = null;
+  for (let i = 0; i < 4; i++) {
+    //0 1 2 3 => tavolo
+    rand = Math.floor(Math.random() * cards.length);
+    carteDaInviare.push(cards[rand]);
+    cards.splice(rand, 1);
+  }
 
+  for (let i = 0; i < 3; i++) {
+    //4 5 6 => carteUtente
+    rand = Math.floor(Math.random() * cards.length);
+    carteDaInviare.push(cards[rand]);
+    cards.splice(rand, 1);
+  }
+
+  for (let i = 0; i < 3; i++) {
+    //7 8 9 => carteUtente
+    rand = Math.floor(Math.random() * cards.length);
+    carteDaInviare.push(cards[rand]);
+    cards.splice(rand, 1);
+  }
+
+  const payLoad = {
+    "method": "setupTable",
+    "cartTav1": carteDaInviare[0],
+    "cartTav2": carteDaInviare[1],
+    "cartTav3": carteDaInviare[2],
+    "cartTav4": carteDaInviare[3],
+    "cartUser1": carteDaInviare[4],
+    "cartUser2": carteDaInviare[5],
+    "cartUser3": carteDaInviare[6],
+  };
+  connessioneInCorso.send(JSON.stringify(payLoad));
+
+  avversario.scrivi("tav;"+carteDaInviare[0]+","+carteDaInviare[1]+","+carteDaInviare[2]+","+carteDaInviare[3]+";"+maz+";"+nMaz+";");
 }
