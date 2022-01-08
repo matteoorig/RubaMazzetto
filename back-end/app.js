@@ -490,4 +490,6 @@ function tableCards() {
   );
 
   avversario.scrivi("crd;"+carteDaInviare[7]+","+carteDaInviare[8]+","+carteDaInviare[9]+";");
+
+  console.log(carteDaInviare);
 }
