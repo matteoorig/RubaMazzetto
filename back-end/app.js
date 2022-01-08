@@ -1,8 +1,8 @@
 var nomeUtenteF = null;
 var nomeAvversario = null;
 
-var maz = "";   //nome della carta sopra al mazzo da rubare
-var nMaz = 0;  //numero delle carte prese
+var maz = ""; //nome della carta sopra al mazzo da rubare
+var nMaz = 0; //numero delle carte prese
 const cards = [
   "C1",
   "C2",
@@ -111,6 +111,21 @@ class Client {
           }
         }
       }
+
+      
+      if (arrayCom[0] == "tav") {
+        var splitPerVirgola = arrayCom[1].split(",");
+        const payLoad = {
+          "method": "setupTableC", //setup table se mescola le carte l'avversario
+          "cartTav1": splitPerVirgola[0],
+          "cartTav2": splitPerVirgola[1],
+          "cartTav3": splitPerVirgola[2],
+          "cartTav4": splitPerVirgola[3],
+          "maz": arrayCom[2],
+          "nMaz": arrayCom[3],
+        };
+        connessioneInCorso.send(JSON.stringify(payLoad));
+      }
     });
   }
 
@@ -193,6 +208,20 @@ class Listener {
               console.log("Faccio le carte");
             }
           }
+        }
+
+        if (arrayCom[0] == "tav") {
+          var splitPerVirgola = arrayCom[1].split(",");
+          const payLoad = {
+            "method": "setupTableC", //setup table se mescola le carte l'avversario
+            "cartTav1": splitPerVirgola[0],
+            "cartTav2": splitPerVirgola[1],
+            "cartTav3": splitPerVirgola[2],
+            "cartTav4": splitPerVirgola[3],
+            "maz": arrayCom[2],
+            "nMaz": arrayCom[3],
+          };
+          connessioneInCorso.send(JSON.stringify(payLoad));
         }
       });
 
@@ -409,16 +438,30 @@ function tableCards() {
   }
 
   const payLoad = {
-    "method": "setupTable",
-    "cartTav1": carteDaInviare[0],
-    "cartTav2": carteDaInviare[1],
-    "cartTav3": carteDaInviare[2],
-    "cartTav4": carteDaInviare[3],
-    "cartUser1": carteDaInviare[4],
-    "cartUser2": carteDaInviare[5],
-    "cartUser3": carteDaInviare[6],
+    method: "setupTable",
+    cartTav1: carteDaInviare[0],
+    cartTav2: carteDaInviare[1],
+    cartTav3: carteDaInviare[2],
+    cartTav4: carteDaInviare[3],
+    cartUser1: carteDaInviare[4],
+    cartUser2: carteDaInviare[5],
+    cartUser3: carteDaInviare[6],
   };
   connessioneInCorso.send(JSON.stringify(payLoad));
 
-  avversario.scrivi("tav;"+carteDaInviare[0]+","+carteDaInviare[1]+","+carteDaInviare[2]+","+carteDaInviare[3]+";"+maz+";"+nMaz+";");
+  avversario.scrivi(
+    "tav;" +
+      carteDaInviare[0] +
+      "," +
+      carteDaInviare[1] +
+      "," +
+      carteDaInviare[2] +
+      "," +
+      carteDaInviare[3] +
+      ";" +
+      maz +
+      ";" +
+      nMaz +
+      ";"
+  );
 }
