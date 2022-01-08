@@ -11,7 +11,8 @@
 
 
 
-
+const carta = document.querySelector('.handCards');
+const playTable = document.getElementById('pt');
 
 /*DRAG & DROP*/
 function allowDrop(ev) {
@@ -28,12 +29,15 @@ function drop(ev) {
   ev.target.appendChild(document.getElementById(data));
   if (data == "dragc1") {
     document.getElementById('dragc1').setAttribute('draggable', false);
+    document.getElementById('dragc1').setAttribute('ondrop', false);    
     document.getElementById('dragc1').setAttribute("class", "cartaPosizionata");
   } else if (data == "dragc2") {
     document.getElementById('dragc2').setAttribute('draggable', false);
+    document.getElementById('dragc2').setAttribute('ondrop', false);   
     document.getElementById('dragc2').setAttribute("class", "cartaPosizionata");
   } else if (data == "dragc3") {
     document.getElementById('dragc3').setAttribute('draggable', false);
+    document.getElementById('dragc3').setAttribute('ondrop', false);   
     document.getElementById('dragc3').setAttribute("class", "cartaPosizionata");
   } else if (data == "dragc4") {
     document.getElementById('dragc4').setAttribute('draggable', false);
@@ -155,3 +159,5 @@ function drop(ev) {
 
 }
 /*FINE DRAG & DROP*/
+
+

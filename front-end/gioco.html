@@ -9,11 +9,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cutive&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styleGioco.css">
-    <script src="functionGioco.js"></script>
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        
+    </style>
 </head>
 
 <body>
+    <script src="functionGioco.js"></script>
+    <div class="containerDadi" id="dado">
+        <div class="diceWrapper">
+            <img src="/dadi/dado1.svg" id="dad1">
+
+        </div>
+        <input type="button" class="btnDadi" value="ROLL THE DICE" onclick="rollTheDice()">
+    </div>
     <input type="button" onclick="random()" value="saddsdasd">
     <div class="container">
 
@@ -61,25 +71,22 @@
             </svg>
         </div>
         <div class="enemyCards"></div>
-        <div class="img"><img src="user.jpg"></div>
+        <div class="img"></div>
         <div class="retNames1">MATTEO</div>
 
     </div>
     <div class="campo">
-        <div class="playTable" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div id="pt" class="playTable" ondrop="drop(event)" ondragover="allowDrop(event)">
 
         </div>
     </div>
     <div class="container">
-        <div class="img2" id="target"><img src="user.jpg">
+        <div class="img2" id="target">
             <!--<input type="file" accept=".png,.jpg" id="select_image" onchange="impostaImg()"/>-->
         </div>
         <div class="retNames2">GIGI</div>
 
-
         <div class="HAND" id="divHand">
-
-
 
         </div>
 
@@ -131,6 +138,32 @@
 
 
     <script>
+        const images = ["/dadi/dado1.svg","/dadi/dado2.svg","/dadi/dado3.svg","/dadi/dado4.svg","/dadi/dado5.svg","/dadi/dado6.svg",];
+        const dice = document.querySelectorAll("img");
+        var DOM_img = document.createElement("img");
+        DOM_img.width = 40;
+        
+        
+        const posizioneDadoFine = document.querySelector("#target");
+        console.log(posizioneDadoFine);
+        function rollTheDice() {
+            dice.forEach(function (die) {
+                die.classList.add("shake");
+            });
+            setTimeout(() => {
+                dice.forEach((die) => {
+                    die.classList.remove("shake");
+                }) 
+                let dieOneValue = Math.floor(Math.random()*6);
+                document.querySelector("#dad1").setAttribute("src",images[dieOneValue]);
+                DOM_img.src = images[dieOneValue];
+                posizioneDadoFine.appendChild(DOM_img);
+                document.getElementById("dado").style.visibility = "hidden";
+            }, 1000);
+            
+        }
+
+
         var tutteCarte = ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "cJ", "cQ", "cK", "q1", "q2", "q3", "q4", "q5", "q6", "q7", "qJ", "qQ", "qK", "f1", "f2", "f3", "f4", "f5", "f6", "f7", "fJ", "fQ", "fK", "p1", "p2", "p3", "p4", "p5", "p6", "p7", "pJ", "pQ", "pK"];
         var svgArr = ['<div class="handCards" id="dragc1" draggable="true" ondragstart="drag(event)"><svg width="158" height="217" viewBox="0 0 158 217" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_d_0_1)"><rect x="0.239502" y="0.521362" width="153.755" height="212.203" rx="19" fill="white"/><rect x="0.739502" y="1.02136" width="152.755" height="211.203" rx="18.5" stroke="black"/></g><path d="M95.0191 114.779C87.9339 121.234 79.668 130.32 76.4206 134.056C75.8302 124.94 75.0036 104.199 76.4206 94.1567C78.1919 81.6042 91.4765 76.6728 99.4473 84.7423C107.418 92.8118 103.875 106.709 95.0191 114.779Z" fill="#FF0000" stroke="#FF0000"/><path d="M57.3916 114.679C64.4767 121.135 72.7427 130.221 75.99 133.957C76.5805 124.841 77.4071 104.099 75.99 94.0573C74.2188 81.5048 60.9341 76.5734 52.9634 84.6429C44.9926 92.7124 48.5352 106.61 57.3916 114.679Z" fill="#FF0000" stroke="#FF0000"/><defs><filter id="filter0_d_0_1" x="0.239502" y="0.521362" width="157.755" height="216.203" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset dx="2" dy="2"/><feGaussianBlur stdDeviation="1"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/></filter></defs></svg></div>',
             '<div class="handCards" id="dragc2" draggable="true" ondragstart="drag(event)"><svg width="159" height="217" viewBox="0 0 159 217" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_d_0_1)"><rect x="0.58252" y="0.36731" width="153.448" height="212.2" rx="19" fill="white"/><rect x="1.08252" y="0.86731" width="152.448" height="211.2" rx="18.5" stroke="black"/></g><path d="M106.38 176.981C111.637 172.192 117.77 165.451 120.179 162.679C120.617 169.442 121.23 184.831 120.179 192.281C118.865 201.594 109.009 205.253 103.095 199.266C97.1813 193.279 99.8096 182.968 106.38 176.981Z" fill="#FF0000" stroke="#FF0000"/><path d="M134.297 177.055C129.041 172.266 122.908 165.525 120.499 162.753C120.061 169.516 119.447 184.905 120.499 192.355C121.813 201.668 131.669 205.327 137.582 199.34C143.496 193.353 140.868 183.042 134.297 177.055Z" fill="#FF0000" stroke="#FF0000"/><path d="M48.2202 37.6194C42.9636 42.409 36.8309 49.1498 34.4217 51.9215C33.9836 45.1585 33.3704 29.7699 34.4217 22.3196C35.7358 13.0066 45.5919 9.34792 51.5056 15.3348C57.4192 21.3217 54.7909 31.6325 48.2202 37.6194Z" fill="#FF0000" stroke="#FF0000"/><path d="M20.3036 37.5455C25.5602 42.335 31.6929 49.0758 34.1021 51.8475C34.5402 45.0845 35.1534 29.696 34.1021 22.2456C32.788 12.9326 22.9319 9.27394 17.0182 15.2609C11.1046 21.2478 13.7329 31.5586 20.3036 37.5455Z" fill="#FF0000" stroke="#FF0000"/><path d="M48.2202 37.6194C42.9636 42.409 36.8309 49.1498 34.4217 51.9215C33.9836 45.1585 33.3704 29.7699 34.4217 22.3196C35.7358 13.0066 45.5919 9.34792 51.5056 15.3348C57.4192 21.3217 54.7909 31.6325 48.2202 37.6194Z" fill="#FF0000" stroke="#FF0000"/><path d="M20.3036 37.5455C25.5602 42.335 31.6929 49.0758 34.1021 51.8475C34.5402 45.0845 35.1534 29.696 34.1021 22.2456C32.788 12.9326 22.9319 9.27394 17.0182 15.2609C11.1046 21.2478 13.7329 31.5586 20.3036 37.5455Z" fill="#FF0000" stroke="#FF0000"/><defs><filter id="filter0_d_0_1" x="0.58252" y="0.36731" width="157.448" height="216.2" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset dx="2" dy="2"/><feGaussianBlur stdDeviation="1"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/></filter></defs></svg></div>',
@@ -150,7 +183,7 @@
         var handCards2 = document.getElementById("handCards2");
         var handCards3 = document.getElementById("handCards3");
         var divHand = document.getElementById("divHand");
-        
+
 
         function random() {
             var random1 = Math.floor(Math.random() * svgArr.length);
