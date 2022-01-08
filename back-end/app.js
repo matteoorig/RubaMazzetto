@@ -67,7 +67,7 @@ class Listener {
 
   close() {
     this.connection.end();
-    this.server.close();
+    //this.server.close();
   }
 
   scrivi(data){
@@ -91,6 +91,11 @@ const app = express();
 const pagina = require("http").Server(app);
 const path = require("path");
 const http = require("http");
+
+//svg per i dadi
+app.get("/dad1.svg", (req, res) => {
+  res.sendFile(path.join(__dirname, "dad1.svg"));
+});
 
 app.get("/home", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
