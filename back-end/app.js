@@ -308,9 +308,6 @@ app.get("/game", (req, res) => {
 app.get("/styleGioco.css", (req, res) => {
   res.sendFile(path.join(__dirname, "../front-end/styleGioco.css"));
 });
-app.get("/functionGioco.js", (req, res) => {
-  res.sendFile(path.join(__dirname, "../front-end/functionGioco.js"));
-});
 app.get("/dadi/dado1.svg", (req, res) => {
   res.sendFile(path.join(__dirname, "../front-end/dadi/dado1.svg"));
 });
@@ -489,12 +486,8 @@ function tableCards() {
       ";"
   );
   console.log(carteDaInviare);
-
-  //come prendere due
   setTimeout(()=>{
     avversario.scrivi("crd;"+carteDaInviare[7]+","+carteDaInviare[8]+","+carteDaInviare[9]+";");
-  }, 1000);
-  
-
+  }, 500);
   
 }
