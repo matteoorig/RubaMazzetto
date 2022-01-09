@@ -164,7 +164,7 @@
                 document.getElementById("nomeAvversario").innerHTML = response.nomeAvversario;
             }
 
-            if(response.method == "setCarte"){
+            if(response.method == "setCarte"){ //se mescola le carte l'avversario e passa quelle in mano
                 
                 cartUtente1 = response.cartaUser1;
                 cartUtente2 = response.cartaUser2;
@@ -255,7 +255,7 @@
                 }/*FINE PICCHE*/
             }
 
-            if (response.method == "setupTable") {
+            if (response.method == "setupTable") { //mescolo io e mi mando quelle sul tavolo e le tre mie
                 console.log(response);
                 cartT1 = response.cartTav1;
                 cartT2 = response.cartTav2;
@@ -434,7 +434,7 @@
                 }/*FINE PICCHE*/
             }
 
-            if(response.method == "setupTableC"){
+            if(response.method == "setupTableC"){ //se mescola le carte l'avversario da mettere sul tavolo
                 cartT1 = response.cartTav1;
                 cartT2 = response.cartTav2;
                 cartT3 = response.cartTav3;

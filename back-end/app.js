@@ -1,6 +1,6 @@
 var nomeUtenteF = null;
 var nomeAvversario = null;
-
+var carteDaInviare = [];
 var maz = " "; //nome della carta sopra al mazzo da rubare
 var nMaz = 0; //numero delle carte prese
 const cards = [
@@ -225,7 +225,7 @@ class Listener {
         if (arrayCom[0] == "tav") {
           var splitPerVirgola = arrayCom[1].split(",");
           const payLoad = {
-            "method": "setupTableC", //setup table se mescola le carte l'avversario
+            "method": "setupTableC", //setup table se mescola le carte l'avversario tavolo
             "cartTav1": splitPerVirgola[0],
             "cartTav2": splitPerVirgola[1],
             "cartTav3": splitPerVirgola[2],
@@ -240,7 +240,7 @@ class Listener {
           console.log("ciao cards event")
           var splitPerVirgola = arrayCom[1].split(",");
           const payLoad = {
-            "method": "setCarte", //setup table se mescola le carte l'avversario
+            "method": "setCarte", //setup table se mescola le carte l'avversario in mano
             "cartaUser1": splitPerVirgola[0],
             "cartaUser2": splitPerVirgola[1],
             "cartaUser3": splitPerVirgola[2],
@@ -439,7 +439,6 @@ function sendNameUser() {
 }
 
 function tableCards() {
-  var carteDaInviare = [];
   var rand = null;
   for (let i = 0; i < 4; i++) {
     //0 1 2 3 => tavolo
