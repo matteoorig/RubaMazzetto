@@ -210,16 +210,16 @@
         var nMaz = 0;
 
         let dieOneValue = null;
-
+        
         const carta = document.querySelector(".handCards");
         const playTable = document.getElementById("pt");
-
         const images = ["./dadi/dado1.svg", "./dadi/dado2.svg", "./dadi/dado3.svg", "./dadi/dado4.svg", "./dadi/dado5.svg", "./dadi/dado6.svg",];
         const dice = document.querySelectorAll("img");
         var DOM_img = document.createElement("img");
         DOM_img.width = 40;
-
         let ws = new WebSocket("ws://localhost:8888");
+
+
         ws.addEventListener("open", (event) => {
             const payLoad = {
                 method: "invio",
@@ -630,7 +630,6 @@
 
         }
 
-
         var tutteCarte = ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "CJ", "CQ", "CK", "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "QJ", "QQ", "QK", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "FJ", "FQ", "FK", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "PJ", "PQ", "PK"];
 
         var handCards1 = document.getElementById("handCards1");
@@ -650,11 +649,6 @@
             $('#divHand').append(svgArr[random3]);
             svgArr.splice(random3, 1);
         }
-
-
-
-
-        
 
         /*DRAG & DROP*/
         function allowDrop(ev) {
