@@ -199,14 +199,18 @@
             console.log("id=> "+i+":"+ carte.childNodes[i].id);
         }
 
+        var mazzoAvversario = null;
+        var contCarteMazzoAvversario = 0;
+
+        var cartUtente1;
+        var cartUtente2;
+        var cartUtente3;
+        var carteTavolo = "";
         var cartT1;
         var cartT2;
         var cartT3;
         var cartT4;
-        var cartUtente1;
-        var cartUtente2;
-        var cartUtente3;
-        var maz;
+        var maz = "";
         var nMaz = 0;
 
         let dieOneValue = null;
@@ -510,6 +514,11 @@
             }
 
             if (response.method == "setupTableC") { //se mescola le carte l'avversario da mettere sul tavolo
+                
+                mazzoAvversario = response.maz;
+                contCarteMazzoAvversario = response.nMaz;
+                
+            
                 cartT1 = response.cartTav1;
                 cartT2 = response.cartTav2;
                 cartT3 = response.cartTav3;
@@ -695,6 +704,9 @@
                         carte.removeChild(carte.childNodes[i]);
                         divHand.removeChild(elementDrop);
                         coperchio.innerHTML = elementDrop.innerHTML;
+                        //aggiungo al contatore delle carte che ho aggiunto una coppia
+                        nMaz = nMaz+2;
+                        maz = convertId(elementDrop.id);
                         checkIns = false;
                     }
                 }
@@ -833,9 +845,122 @@
 
             }
 
+            aggiungoCartaSulTavolo();
         }
         
 
+        function convertId(id){
+            if(id == "dragc1"){
+                return "C1";
+            }else if(id == "dragc2"){
+                return "C2";
+            }else if(id == "dragc3"){
+                return "C3";
+            }else if(id == "dragc4"){
+                return "C4";
+            }else if(id == "dragc5"){
+                return "C5";
+            }else if(id == "dragc6"){
+                return "C6";
+            }else if(id == "dragc7"){
+                return "C7";
+            }else if(id == "dragcJ"){
+                return "CJ";
+            }else if(id == "dragcQ"){
+                return "CQ";
+            }else if(id == "dragcK"){
+                return "CK";
+            }else if(id == "dragq1"){
+                return "Q1"
+            }else if(id == "dragq2"){
+                return "Q2";
+            }else if(id == "dragq3"){
+                return "Q3";
+            }else if(id == "dragq4"){
+                return "Q4";
+            }else if(id == "dragq5"){
+                return "Q5";
+            }else if(id == "dragq6"){
+                return "Q6";
+            }else if(id == "dragq7"){
+                return "Q7";
+            }else if(id == "dragqJ"){
+                return "QJ";
+            }else if(id == "dragqQ"){
+                return "QQ";
+            }else if(id == "dragqK"){
+                return "QK";
+            }else if(id == "dragf1"){
+                return "F1"
+            }else if(id == "dragf2"){
+                return "F2";
+            }else if(id == "dragf3"){
+                return "F3";
+            }else if(id == "dragf4"){
+                return "F4";
+            }else if(id == "dragf5"){
+                return "F5";
+            }else if(id == "dragf6"){
+                return "F6";
+            }else if(id == "dragf7"){
+                return "F7";
+            }else if(id == "dragfJ"){
+                return "FJ";
+            }else if(id == "dragfQ"){
+                return "FQ";
+            }else if(id == "dragfK"){
+                return "FK";
+            }else if(id == "dragp1"){
+                return "P1"
+            }else if(id == "dragp2"){
+                return "P2";
+            }else if(id == "dragp3"){
+                return "P3";
+            }else if(id == "dragp4"){
+                return "P4";
+            }else if(id == "dragp5"){
+                return "P5";
+            }else if(id == "dragp6"){
+                return "P6";
+            }else if(id == "dragp7"){
+                return "P7";
+            }else if(id == "dragpJ"){
+                return "PJ";
+            }else if(id == "dragpQ"){
+                return "PQ";
+            }else if(id == "dragpK"){
+                return "PK";
+            }else{
+                return  null;
+            }
+        }
+        function getTableCards(){
+            var contatore = 0;
+            var carte = document.getElementById("pt");  
+            for (var i = 0; i < carte.childNodes.length; i++) {
+                if (carte.childNodes[i].nodeType != 3) {
+                    if(contatore == 0){
+                        carteTavolo += convertId(carte.childNodes[i].id);
+                    }else{
+                        carteTavolo += ","+convertId(carte.childNodes[i].id);
+                    }
+                    contatore++;
+                }
+            }
+        }
+        
+        function aggiungoCartaSulTavolo(){
+            getTableCards();
+            const payLoad = {
+                "method": "aggiungoCartaSulTavolo",
+                "tavolo": carteTavolo,
+                "maz": maz,
+                "nMaz": nMaz,
+            }
+            ws.send(JSON.stringify(payLoad));
+            console.log(payLoad);
+
+        }
     </script>
 
 </body>

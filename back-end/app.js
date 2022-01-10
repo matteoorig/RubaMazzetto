@@ -114,6 +114,16 @@ class Client {
 
       
       if (arrayCom[0] == "tav") {
+
+        const payLoad = {
+          "method": "setupTableC",
+          "tavolo": arrayCom[1],
+          "maz": arrayCom[2],
+          "nMaz": arrayCom[3],
+        }
+        connessioneInCorso.send(JSON.stringify(payLoad));
+
+        /*
         var splitPerVirgola = arrayCom[1].split(",");
         const payLoad = {
           "method": "setupTableC", //setup table se mescola le carte l'avversario
@@ -125,6 +135,7 @@ class Client {
           "nMaz": arrayCom[3],
         };
         connessioneInCorso.send(JSON.stringify(payLoad));
+        */
       }
       
       if(arrayCom[0] == "crd"){
@@ -245,6 +256,16 @@ class Listener {
             "cartaUser2": splitPerVirgola[1],
             "cartaUser3": splitPerVirgola[2],
           };
+          connessioneInCorso.send(JSON.stringify(payLoad));
+        }
+
+        if(arrayCom[0] == "tav"){
+
+          //quando arriva il setup del tavolo dell'avversario
+          const payLoad = {
+            "method": "setRound",
+            "tavolo": 
+          }
           connessioneInCorso.send(JSON.stringify(payLoad));
         }
       });
@@ -392,6 +413,10 @@ wsServer.on("request", (request) => {
       if (host_client == "CLIENT") {
         avversario.scrivi("dad;" + result.dad + ";");
       }
+    }
+
+    if(result.method == "aggiungoCartaSulTavolo"){
+      avversario.scrivi("tav;"+result.tavolo+";"+result.maz+";"+result.nMaz+";");
     }
 
     console.log(result.method);
