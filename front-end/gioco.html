@@ -592,7 +592,7 @@
             }
 
             if (response.method == "setupTableC") { //se mescola le carte l'avversario da mettere sul tavolo
-                
+                    console.log("stanno arrivando le carte...")
                 mazzoAvversario = response.maz;
                 contCarteMazzoAvversario = response.nMaz;
 
@@ -600,88 +600,88 @@
                 var tempCr = tmptav.split(",");
                 for(var i = 0; i < tempCr.length; i++){
                     if (tempCr[i] == "C1") {
-                        $('#pt').append(svgArr[0]);
+                        $('#pt').innerHTML(svgArr[0])
                     }if (tempCr[i] == "C2" ) {
-                        $('#pt').append(svgArr[1]);
+                        $('#pt').innerHTML(svgArr[1]);
                     } if (tempCr[i] == "C3") {
-                        $('#pt').append(svgArr[2]);
+                        $('#pt').innerHTML(svgArr[2]);
                     } if (tempCr[i] == "C4") {
-                        $('#pt').append(svgArr[3]);
+                        $('#pt').innerHTML(svgArr[3]);
                     } if (tempCr[i] == "C5") {
-                        $('#pt').append(svgArr[4]);
+                        $('#pt').innerHTML(svgArr[4]);
                     } if (tempCr[i] == "C6") {
-                        $('#pt').append(svgArr[5]);
+                        $('#pt').innerHTML(svgArr[5]);
                     } if (tempCr[i] == "C7") {
-                        $('#pt').append(svgArr[6]);
+                        $('#pt').innerHTML(svgArr[6]);
                     } if (tempCr[i] == "CJ") {
-                        $('#pt').append(svgArr[7]);
+                        $('#pt').innerHTML(svgArr[7]);
                     } if (tempCr[i] == "CQ") {
-                        $('#pt').append(svgArr[8]);
+                        $('#pt').innerHTML(svgArr[8]);
                     } if (tempCr[i] == "CK") {
-                        $('#pt').append(svgArr[9]);
+                        $('#pt').innerHTML(svgArr[9]);
                     }/*FINE CUORI*/  
                     if (tempCr[i] == "Q1") {
-                        $('#pt').append(svgArr[10]);
+                        $('#pt').innerHTML(svgArr[10]);
                     } if (tempCr[i] == "Q2") {
-                        $('#pt').append(svgArr[11]);
+                        $('#pt').innerHTML(svgArr[11]);
                     } if (tempCr[i] == "Q3") {
-                        $('#pt').append(svgArr[12]);
+                        $('#pt').innerHTML(svgArr[12]);
                     } if (tempCr[i] == "Q4") {
-                        $('#pt').append(svgArr[13]);
+                        $('#pt').innerHTML(svgArr[13]);
                     } if (tempCr[i] == "Q5") {
-                        $('#pt').append(svgArr[14]);
+                        $('#pt').innerHTML(svgArr[14]);
                     } if (tempCr[i] == "Q6") {
-                        $('#pt').append(svgArr[15]);
+                        $('#pt').innerHTML(svgArr[15]);
                     } if (tempCr[i] == "Q7") {
-                        $('#pt').append(svgArr[16]);
+                        $('#pt').innerHTML(svgArr[16]);
                     } if (tempCr[i] == "QJ") {
-                        $('#pt').append(svgArr[17]);
+                        $('#pt').innerHTML(svgArr[17]);
                     } if (tempCr[i] == "QQ") {
-                        $('#pt').append(svgArr[18]);
+                        $('#pt').innerHTML(svgArr[18]);
                     } if (tempCr[i] == "QK") {
-                        $('#pt').append(svgArr[19]);
+                        $('#pt').innerHTML(svgArr[19]);
                     }/*FINE QUADRI*/  
                     if (tempCr[i] == "F1") {
-                        $('#pt').append(svgArr[20]);
+                        $('#pt').innerHTML(svgArr[20]);
                     } if (tempCr[i] == "F2") {
-                        $('#pt').append(svgArr[21]);
+                        $('#pt').innerHTML(svgArr[21]);
                     } if (tempCr[i] == "F3") {
-                        $('#pt').append(svgArr[22]);
+                        $('#pt').innerHTML(svgArr[22]);
                     } if (tempCr[i] == "F4") {
-                        $('#pt').append(svgArr[23]);
+                        $('#pt').innerHTML(svgArr[23]);
                     } if (tempCr[i] == "F5") {
-                        $('#pt').append(svgArr[24]);
+                        $('#pt').innerHTML(svgArr[24]);
                     } if (tempCr[i] == "F6") {
-                        $('#pt').append(svgArr[25]);
+                        $('#pt').innerHTML(svgArr[25]);
                     } if (tempCr[i] == "F7") {
-                        $('#pt').append(svgArr[26]);
+                        $('#pt').innerHTML(svgArr[26]);
                     } if (tempCr[i] == "FJ") {
-                        $('#pt').append(svgArr[27]);
+                        $('#pt').innerHTML(svgArr[27]);
                     } if (tempCr[i] == "FQ") {
-                        $('#pt').append(svgArr[28]);
+                        $('#pt').innerHTML(svgArr[28]);
                     } if (tempCr[i] == "FK") {
-                        $('#pt').append(svgArr[29]);
+                        $('#pt').innerHTML(svgArr[29]);
                     }/*FINE FIORI*/  
                     if (tempCr[i] == "P1") {
-                        $('#pt').append(svgArr[30]);
+                        $('#pt').innerHTML(svgArr[30]);
                     } if (tempCr[i] == "P2") {
-                        $('#pt').append(svgArr[31]);
+                        $('#pt').innerHTML(svgArr[31]);
                     } if (tempCr[i] == "P3") {
-                        $('#pt').append(svgArr[32]);
+                        $('#pt').innerHTML(svgArr[32]);
                     } if (tempCr[i] == "P4") {
-                        $('#pt').append(svgArr[33]);
+                        $('#pt').innerHTML(svgArr[33]);
                     } if (tempCr[i] == "P5") {
-                        $('#pt').append(svgArr[34]);
+                        $('#pt').innerHTML(svgArr[34]);
                     } if (tempCr[i] == "P6") {
-                        $('#pt').append(svgArr[35]);
+                        $('#pt').innerHTML(svgArr[35]);
                     } if (tempCr[i] == "P7") {
-                        $('#pt').append(svgArr[36]);
+                        $('#pt').innerHTML(svgArr[36]);
                     } if (tempCr[i] == "PJ") {
-                        $('#pt').append(svgArr[37]);
+                        $('#pt').innerHTML(svgArr[37]);
                     } if (tempCr[i] == "PQ") {
-                        $('#pt').append(svgArr[38]);
+                        $('#pt').innerHTML(svgArr[38]);
                     } if (tempCr[i] == "PK") {
-                        $('#pt').append(svgArr[39]);
+                        $('#pt').innerHTML(svgArr[39]);
                     }/*FINE PICCHE*/
                 }
             }
