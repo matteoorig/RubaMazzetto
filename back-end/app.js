@@ -233,10 +233,21 @@ class Listener {
           }
         }
 
+        
         if (arrayCom[0] == "tav") {
+
+          const payLoad = {
+            "method": "setupTableC",
+            "tavolo": arrayCom[1],
+            "maz": arrayCom[2],
+            "nMaz": arrayCom[3],
+          }
+          connessioneInCorso.send(JSON.stringify(payLoad));
+  
+          /*
           var splitPerVirgola = arrayCom[1].split(",");
           const payLoad = {
-            "method": "setupTableC", //setup table se mescola le carte l'avversario tavolo
+            "method": "setupTableC", //setup table se mescola le carte l'avversario
             "cartTav1": splitPerVirgola[0],
             "cartTav2": splitPerVirgola[1],
             "cartTav3": splitPerVirgola[2],
@@ -245,6 +256,7 @@ class Listener {
             "nMaz": arrayCom[3],
           };
           connessioneInCorso.send(JSON.stringify(payLoad));
+          */
         }
 
         if(arrayCom[0] == "crd"){
