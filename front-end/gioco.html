@@ -191,12 +191,6 @@
         $('#divHand').append(svgArr[14]);
         */
         
-        var carte = document.getElementById("pt");
-        console.log(carte.childNodes.length)
-        for (var i = 1; i < carte.childNodes.length; i+=2) {
-            console.log("id=> "+i+":"+ carte.childNodes[i].id);
-        }
-
         var mazzoAvversario = null;
         var contCarteMazzoAvversario = 0;
 
@@ -592,7 +586,7 @@
             }
 
             if (response.method == "setupTableC") { //se mescola le carte l'avversario da mettere sul tavolo
-                    console.log("stanno arrivando le carte...")
+                console.log("stanno arrivando le carte...")
                 mazzoAvversario = response.maz;
                 contCarteMazzoAvversario = response.nMaz;
                 var vettAppend = [];
@@ -692,6 +686,7 @@
 
                 var tavoloDiv = document.getElementById("pt");
                 tavoloDiv.innerHTML = tm;
+                vettAppend = [];
             }
 
         };
@@ -719,12 +714,9 @@
                 const payLoad = {
                     "method": "rollDice",
                     "dad": dieOneValue,
-
                 }
                 ws.send(JSON.stringify(payLoad));
             }, 1000);
-
-
         }
 
         var tutteCarte = ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "CJ", "CQ", "CK", "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "QJ", "QQ", "QK", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "FJ", "FQ", "FK", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "PJ", "PQ", "PK"];
@@ -757,6 +749,7 @@
         }
 
         function drop(ev) {
+            carteTavolo = "";
             var carte = document.getElementById("pt");        
             var data = ev.dataTransfer.getData("text");
             var divhand = document.getElementById("divHand");
@@ -928,10 +921,10 @@
                     document.getElementById("dragpK").setAttribute("draggable", false);
                     document.getElementById("dragpK").setAttribute("class", "cartaPosizionata");
                 } // FINE PICCHE
-
+                aggiungoCartaSulTavolo();
             }
 
-            aggiungoCartaSulTavolo();
+            
         }
         
 
