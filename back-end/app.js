@@ -259,15 +259,6 @@ class Listener {
           connessioneInCorso.send(JSON.stringify(payLoad));
         }
 
-        if(arrayCom[0] == "tav"){
-
-          //quando arriva il setup del tavolo dell'avversario
-          const payLoad = {
-            "method": "setRound",
-            "tavolo": 
-          }
-          connessioneInCorso.send(JSON.stringify(payLoad));
-        }
       });
 
       this.connection.on("end", () => {
