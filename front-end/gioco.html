@@ -595,96 +595,105 @@
                     console.log("stanno arrivando le carte...")
                 mazzoAvversario = response.maz;
                 contCarteMazzoAvversario = response.nMaz;
-
+                var vettAppend = [];
                 var tmptav = response.tavolo;
                 var tempCr = tmptav.split(",");
                 for(var i = 0; i < tempCr.length; i++){
                     if (tempCr[i] == "C1") {
-                        $('#pt').innerHTML(svgArr[0])
+                        vettAppend.push(svgArr[0]);
                     }if (tempCr[i] == "C2" ) {
-                        $('#pt').innerHTML(svgArr[1]);
+                        vettAppend.push(svgArr[1]);
                     } if (tempCr[i] == "C3") {
-                        $('#pt').innerHTML(svgArr[2]);
+                        vettAppend.push(svgArr[2]);
                     } if (tempCr[i] == "C4") {
-                        $('#pt').innerHTML(svgArr[3]);
+                        vettAppend.push(svgArr[3]);
                     } if (tempCr[i] == "C5") {
-                        $('#pt').innerHTML(svgArr[4]);
+                        vettAppend.push(svgArr[4]);
                     } if (tempCr[i] == "C6") {
-                        $('#pt').innerHTML(svgArr[5]);
+                        vettAppend.push(svgArr[5]);
                     } if (tempCr[i] == "C7") {
-                        $('#pt').innerHTML(svgArr[6]);
+                        vettAppend.push(svgArr[6]);
                     } if (tempCr[i] == "CJ") {
-                        $('#pt').innerHTML(svgArr[7]);
+                        vettAppend.push(svgArr[7]);
                     } if (tempCr[i] == "CQ") {
-                        $('#pt').innerHTML(svgArr[8]);
+                        vettAppend.push(svgArr[8]);
                     } if (tempCr[i] == "CK") {
-                        $('#pt').innerHTML(svgArr[9]);
+                        vettAppend.push(svgArr[9]);
                     }/*FINE CUORI*/  
                     if (tempCr[i] == "Q1") {
-                        $('#pt').innerHTML(svgArr[10]);
+                        vettAppend.push(svgArr[10]);
                     } if (tempCr[i] == "Q2") {
-                        $('#pt').innerHTML(svgArr[11]);
+                        vettAppend.push(svgArr[11]);
                     } if (tempCr[i] == "Q3") {
-                        $('#pt').innerHTML(svgArr[12]);
+                        vettAppend.push(svgArr[12]);
                     } if (tempCr[i] == "Q4") {
-                        $('#pt').innerHTML(svgArr[13]);
+                        vettAppend.push(svgArr[13]);
                     } if (tempCr[i] == "Q5") {
-                        $('#pt').innerHTML(svgArr[14]);
+                        vettAppend.push(svgArr[14]);
                     } if (tempCr[i] == "Q6") {
-                        $('#pt').innerHTML(svgArr[15]);
+                        vettAppend.push(svgArr[15]);
                     } if (tempCr[i] == "Q7") {
-                        $('#pt').innerHTML(svgArr[16]);
+                        vettAppend.push(svgArr[16]);
                     } if (tempCr[i] == "QJ") {
-                        $('#pt').innerHTML(svgArr[17]);
+                        vettAppend.push(svgArr[17]);
                     } if (tempCr[i] == "QQ") {
-                        $('#pt').innerHTML(svgArr[18]);
+                        vettAppend.push(svgArr[18]);
                     } if (tempCr[i] == "QK") {
-                        $('#pt').innerHTML(svgArr[19]);
+                        vettAppend.push(svgArr[19]);
                     }/*FINE QUADRI*/  
                     if (tempCr[i] == "F1") {
-                        $('#pt').innerHTML(svgArr[20]);
+                        vettAppend.push(svgArr[20]);
                     } if (tempCr[i] == "F2") {
-                        $('#pt').innerHTML(svgArr[21]);
+                        vettAppend.push(svgArr[21]);
                     } if (tempCr[i] == "F3") {
-                        $('#pt').innerHTML(svgArr[22]);
+                        vettAppend.push(svgArr[22]);
                     } if (tempCr[i] == "F4") {
-                        $('#pt').innerHTML(svgArr[23]);
+                        vettAppend.push(svgArr[23]);
                     } if (tempCr[i] == "F5") {
-                        $('#pt').innerHTML(svgArr[24]);
+                        vettAppend.push(svgArr[24]);
                     } if (tempCr[i] == "F6") {
-                        $('#pt').innerHTML(svgArr[25]);
+                        vettAppend.push(svgArr[25]);
                     } if (tempCr[i] == "F7") {
-                        $('#pt').innerHTML(svgArr[26]);
+                        vettAppend.push(svgArr[26]);
                     } if (tempCr[i] == "FJ") {
-                        $('#pt').innerHTML(svgArr[27]);
+                        vettAppend.push(svgArr[27]);
                     } if (tempCr[i] == "FQ") {
-                        $('#pt').innerHTML(svgArr[28]);
+                        vettAppend.push(svgArr[28]);
                     } if (tempCr[i] == "FK") {
-                        $('#pt').innerHTML(svgArr[29]);
+                        vettAppend.push(svgArr[29]);
                     }/*FINE FIORI*/  
                     if (tempCr[i] == "P1") {
-                        $('#pt').innerHTML(svgArr[30]);
+                        vettAppend.push(svgArr[30]);
                     } if (tempCr[i] == "P2") {
-                        $('#pt').innerHTML(svgArr[31]);
+                        vettAppend.push(svgArr[31]);
                     } if (tempCr[i] == "P3") {
-                        $('#pt').innerHTML(svgArr[32]);
+                        vettAppend.push(svgArr[32]);
                     } if (tempCr[i] == "P4") {
-                        $('#pt').innerHTML(svgArr[33]);
+                        vettAppend.push(svgArr[33]);
                     } if (tempCr[i] == "P5") {
-                        $('#pt').innerHTML(svgArr[34]);
+                        vettAppend.push(svgArr[34]);
                     } if (tempCr[i] == "P6") {
-                        $('#pt').innerHTML(svgArr[35]);
+                        vettAppend.push(svgArr[35]);
                     } if (tempCr[i] == "P7") {
-                        $('#pt').innerHTML(svgArr[36]);
+                        vettAppend.push(svgArr[36]);
                     } if (tempCr[i] == "PJ") {
-                        $('#pt').innerHTML(svgArr[37]);
+                        vettAppend.push(svgArr[37]);
                     } if (tempCr[i] == "PQ") {
-                        $('#pt').innerHTML(svgArr[38]);
+                        vettAppend.push(svgArr[38]);
                     } if (tempCr[i] == "PK") {
-                        $('#pt').innerHTML(svgArr[39]);
+                        vettAppend.push(svgArr[39]);
                     }/*FINE PICCHE*/
                 }
+
+                var tm = "";
+                for(var i = 0; i<vettAppend.length; i++){
+                    tm += vettAppend[i];
+                }
+
+                var tavoloDiv = document.getElementById("pt");
+                tavoloDiv.innerHTML = tm;
             }
+
         };
 
 
