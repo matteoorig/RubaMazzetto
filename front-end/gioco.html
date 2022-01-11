@@ -26,7 +26,7 @@
     <input type="button" onclick="random()" value="saddsdasd">
     <div class="container">
 
-        <div class="backCards">
+        <div class="backCards" id="backAvv">
             <svg width="156" height="213" viewBox="0 0 156 213" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_0_1)">
                     <rect width="152" height="209" rx="19" fill="white" />
@@ -588,6 +588,93 @@
             if (response.method == "setupTableC") { //se mescola le carte l'avversario da mettere sul tavolo
                 console.log("stanno arrivando le carte...")
                 mazzoAvversario = response.maz;
+
+                var divavversario = document.getElementById("backAvv");
+                
+                if (mazzoAvversario == "C1") {
+                    divavversario.innerHTML = svgArr[0];
+                    }if (mazzoAvversario == "C2" ) {
+                        divavversario.innerHTML = svgArr[1];
+                    } if (mazzoAvversario == "C3") {
+                        divavversario.innerHTML = svgArr[2];
+                    } if (mazzoAvversario == "C4") {
+                        divavversario.innerHTML = svgArr[3];
+                    } if (mazzoAvversario == "C5") {
+                        divavversario.innerHTML = svgArr[4];
+                    } if (mazzoAvversario == "C6") {
+                        divavversario.innerHTML = svgArr[5];
+                    } if (mazzoAvversario == "C7") {
+                        divavversario.innerHTML = svgArr[6];
+                    } if (mazzoAvversario == "CJ") {
+                        divavversario.innerHTML = svgArr[7];
+                    } if (mazzoAvversario == "CQ") {
+                        divavversario.innerHTML = svgArr[8];
+                    } if (mazzoAvversario == "CK") {
+                        divavversario.innerHTML = svgArr[9];
+                    }/*FINE CUORI*/  
+                    if (mazzoAvversario == "Q1") {
+                        divavversario.innerHTML = svgArr[10];
+                    } if (mazzoAvversario== "Q2") {
+                        divavversario.innerHTML = svgArr[11];
+                    } if (mazzoAvversario == "Q3") {
+                        divavversario.innerHTML = svgArr[12];
+                    } if (mazzoAvversario == "Q4") {
+                        divavversario.innerHTML = svgArr[13];
+                    } if (mazzoAvversario == "Q5") {
+                        divavversario.innerHTML = svgArr[14];
+                    } if (mazzoAvversario == "Q6") {
+                        divavversario.innerHTML = svgArr[15];
+                    } if (mazzoAvversario == "Q7") {
+                        divavversario.innerHTML = svgArr[16];
+                    } if (mazzoAvversario == "QJ") {
+                        divavversario.innerHTML = svgArr[17];
+                    } if (mazzoAvversario == "QQ") {
+                        divavversario.innerHTML = svgArr[18];
+                    } if (mazzoAvversario== "QK") {
+                        divavversario.innerHTML = svgArr[19];
+                    }/*FINE QUADRI*/  
+                    if (mazzoAvversario == "F1") {
+                        divavversario.innerHTML = svgArr[20];
+                    } if (mazzoAvversario == "F2") {
+                        divavversario.innerHTML = svgArr[21];
+                    } if (mazzoAvversario == "F3") {
+                        divavversario.innerHTML = svgArr[22];
+                    } if (mazzoAvversario== "F4") {
+                        divavversario.innerHTML = svgArr[23];
+                    } if (mazzoAvversario == "F5") {
+                        divavversario.innerHTML = svgArr[24];
+                    } if (mazzoAvversario == "F6") {
+                        divavversario.innerHTML = svgArr[25];
+                    } if (mazzoAvversario == "F7") {
+                        divavversario.innerHTML = svgArr[26];
+                    } if (mazzoAvversario == "FJ") {
+                        divavversario.innerHTML = svgArr[27];
+                    } if (mazzoAvversario == "FQ") {
+                        divavversario.innerHTML = svgArr[28];
+                    } if (mazzoAvversario == "FK") {
+                        divavversario.innerHTML = svgArr[29];
+                    }/*FINE FIORI*/  
+                    if (mazzoAvversario == "P1") {
+                        divavversario.innerHTML = svgArr[30];
+                    } if (mazzoAvversario == "P2") {
+                        divavversario.innerHTML = svgArr[31];
+                    } if (mazzoAvversario == "P3") {
+                        divavversario.innerHTML = svgArr[32];
+                    } if (mazzoAvversario == "P4") {
+                        divavversario.innerHTML = svgArr[33];
+                    } if (mazzoAvversario == "P5") {
+                        divavversario.innerHTML = svgArr[34];
+                    } if (mazzoAvversario == "P6") {
+                        divavversario.innerHTML = svgArr[35];
+                    } if (mazzoAvversario == "P7") {
+                        divavversario.innerHTML = svgArr[36];
+                    } if (mazzoAvversario == "PJ") {
+                        divavversario.innerHTML = svgArr[37];
+                    } if (mazzoAvversario == "PQ") {
+                        divavversario.innerHTML = svgArr[38];
+                    } if (mazzoAvversario == "PK") {
+                        divavversario.innerHTML = svgArr[39];
+                    }/*FINE PICCHE*/
                 contCarteMazzoAvversario = response.nMaz;
                 var vettAppend = [];
                 var tmptav = response.tavolo;
