@@ -124,7 +124,6 @@
     align-self: center;
     box-sizing: border-box;
     border-radius: 19px;
-    background: pink;
 }
 .handCards:hover{
     transform: translateY(-10px);
